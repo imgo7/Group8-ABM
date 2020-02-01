@@ -26,7 +26,7 @@ We have summarised the paper's findings in our own words.
 - Infection **control strategies** in hospital:
     1. hand disinfection procedures
     2. environmental  cleaning
-    3. active  screening  for colonizationamong patients
+    3. active  screening  for colonization among patients
     4. isolation of colonized individuals
     5. managing staffing levels
     6. antibiotic prescription 
@@ -37,11 +37,11 @@ We have summarised the paper's findings in our own words.
 - The **factors** <a name="factors"></a> have been considered in these stochastic models:  
     1. spontaneous colonization of patients
     2. patient-to-staff and staff-to-patient contamination/colonization
-    3. environmentalcontamination
+    3. environmental contamination
     4. patient cohorting
     5. room configuration of thehospital ward
     6. staff hand-washing compliance level
-    7. the presence of different types of HCWs or specific staff–patientcontact network structures
+    7. the presence of different types of HCWs or specific staff–patient contact network structures
 - This paper **results show**: <a name="show"></a>
     1. highlight the importance of maintaining high hand-hygiene compliance levelsby HCWs
     2. support control strategies including to improve environmental cleaning during nosocomial outbreaks
