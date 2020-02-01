@@ -5,10 +5,15 @@ López-García, Martín  and Kypraios,Theodore 2018, 'A unified stochastic model
 We have summarised the paper's findings in our own words. 
 
 ## Abstract - Can
-- 
+**This paper illustrates:**
+- a highly versatile stochastic modelling framework that can account for [these factors](#factors).
+- allows one to exactly analyse the reproduction number of eachagent at the hospital ward during a nosocomial outbreak.
+- having case studies to show this unified modelling framework.
+- the results show [these points](#show).
 ## Section 1 - Can
+**Introduction:**
 - worldwide problem:
-    1. Getting infections at the hospital.
+    1. getting infections at the hospital.
     2. pathogens --> antibiotic resistance appearing and spreading.
 - Easy to spread multidrug-resistant bacteria (MDRB) in healthcare environments.
 - Mode of transmission (uncertain but usually):
@@ -16,8 +21,8 @@ We have summarised the paper's findings in our own words.
     2. endogenous
 - Transmission occur:
     1. HCW–patient
-    2. Environmental contamination
-    3. Airborne spread
+    2. environmental contamination
+    3. airborne spread
 - Infection control strategies in hospital:
     1. hand disinfection procedures
     2. environmental  cleaning
@@ -28,8 +33,8 @@ We have summarised the paper's findings in our own words.
     7. decolonization procedures
     8. patient cohorting
 - Using agent-based models in this paper:  
-  agent-based models -- where one keeps track of the state ofeach individual within the population throughout time, allow-ing one to model heterogeneities at the individual level.
-- The points have been considered in these stochastic models:  
+  agent-based models -- where one keeps track of the state ofeach individual within the population throughout time, allowing one to model heterogeneities at the individual level.
+- The factors <a name="factors"></a> have been considered in these stochastic models:  
     1. spontaneous colonization of patients
     2. patient-to-staff and staff-to-patient contamination/colonization
     3. environmentalcontamination
@@ -37,8 +42,8 @@ We have summarised the paper's findings in our own words.
     5. room configuration of thehospital ward
     6. staff hand-washing compliance level
     7. the presence of different types of HCWs or specific staff–patientcontact network structures
-- This paper highlights: 
-    1. the importance of maintaining highhand-hygiene compliance levels by healthcare worker
+- This paper results show: <a name="show"></a>
+    1. highlight the importance of maintaining high hand-hygiene compliance levelsby HCWs
     2. support control strategies including to improve environmental cleaning during nosocomial outbreaks
     3. show the potential of some healthcare workers to act as super-spreaders during these outbreaks
     
