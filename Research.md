@@ -48,8 +48,22 @@ We have summarised the paper's findings in our own words.
     3. show the potential of some healthcare workers to act as super-spreaders during these outbreaks
     
 ## Section 2 - Imalia
+The structure suggested by the author to build the agent-based model is directly outlined within this section.  The authors propose a model whereby the agents existing in the model can be classed under different types such as patients, healthcare workers (HCWs), surfaces and patients situated in alternative rooms. The basis of the proposed model is built on the concept of a continuous-time Markov chain. The reason for this selection is clarified by the authors who expand the logic behind their choice by stating that the Markov chain facilitates the necessary accuracy needed to calculate the reproduction number of the various agents. This leads to a method of measuring the number of infections that are introduced by the agent. The model also measures the degree of infectiousness of an individual agents when interacting with different individuals. 
 ### Section 2.1 - Imalia
+The process of infection takes into account the equation: X = {X(t)  = (I<sub>1</sub>(t),I<sub>2</sub>(t), …, I<sub>k</sub>(t))} where t ≥ 0 and I<sub>N</sub>(t) relates the number of Infectives at a certain level N at time t. The level is defined by the case study in question. The number of likely cases S<sub>N</sub>(t) is given by the equation L<sub>N</sub>-I<sub>N</sub>(t) for t≥0. An additional equation is found to define the states present. The states (i<sub>1</sub>,…, i<sub>k</sub>) refer to the number of contaminated individuals i<sub>N</sub> at the levels 1 ≤ N ≤ k. The final state F indicates the end of the transition of states. 
+<br><br>Removal occurs at level N:  (i<sub>1</sub>,…,i<sub>k</sub> )→(i<sub>1</sub>,…,i<sub>N</sub>-1,…,i<sub>k</sub>) at rate α<sub>N</sub>(i<sub>1</sub>,…,i<sub>k</sub>)
+<br><br>
+Infection occurs at level N:  (i<sub>1</sub>,…,i<sub>k</sub> )→(i<sub>1</sub>,…,i<sub>N</sub>-1,…,ik) at rate β<sub>N</sub>(i<sub>1</sub>,…,i<sub>k</sub>)
+<br><br>
+Detection of the infection outbreak (i<sub>1</sub>,…,i<sub>k</sub> )→F at rate γ(i<sub>1</sub>,…,i<sub>k</sub>)
+<br><br>
+Every factor depends on the individual case study in question. The γ rate enables the discovery of where the pathogen is introduced.
+The exact reproduction number refers to the number of infections that have been instigated by the individual until the person is removed or the outbreak has been detected successfully. This can be summed up by: R<sub>(i1,…,ik)</sub><sup>(N)</sup> = ∑<sub>(a=1)</sub><sup>k</sup> R<sub>(i1,…,ik)</sub>(N)<sup>(a)</sup>. R is the number of infections caused by the individual at a level N. This value is a global variable.
+
 ### Section 2.2 - Imalia
+ R<sub>(i1,…,ik)</sub><sup>(N)</sup> In the initial starting state the value R’s states encompass the basic reproduction number to produce the mean value. In this initial state R results in being R<sub>(0,..,0,1,…,0)</sub><sup>(N)</sup>. Infection and removal rates are calculated using the R<sub>(i1,…,ik)</sub><sup>(N)</sup> and R<sub>(i1,…,ik)</sub><sup>(N)</sup>(a) values. Every infected person at level N is removed at rate αN and every individual can be infected externally or by another individual with rate βN. Probabilities can be computed using the equation v<sub>(i1,…,ik)</sub><sup>(N)</sup>(q) = P(R<sub>(i1,…,ik)</sub><sup>(N)</sup>=q), q≥0.
+The Markov chain consists of a system that is able to transition from state to state, whilst obeying rules relating to probability. The subsequent states are determined on the current state and time passed.
+
 ## Section 3 - Ben
 ### Section 3.1 - Ben
 ### Section 3.2 - Akinfolarin
