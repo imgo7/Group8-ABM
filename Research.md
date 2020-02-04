@@ -77,3 +77,4 @@ The model used within the case study allows for the user to analyse the spread w
 Several assumptions will be made throughout the project, most notably that a constant number of agents (patients, HCWs, surfaces) will be in the hospital at a given time. The events of the spread are assumed to be Markovian ( the probability of an event occurring is affected by another event preceding it)
 
 ## Data accessibility and Authors' contributions - Eoin
+All python code is available within the paper
