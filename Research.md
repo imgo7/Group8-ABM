@@ -72,4 +72,8 @@ This model focuses on a hospital with Np patients and Nhcw healthcare workers. P
 ### Section 3.4 - Kian
 ### Section 3.5 - Kian
 ## Section 4 - Eoin
+The model used within the case study allows for the user to analyse the spread while being able to consider different hypotheses regarding the spread of a hospital-born disease or infection and to consider the different variables that could be important factors of the spread of nosocomial diseases, i.e hand hygiene routines in the hospital, environmental cleaning, etc. The methodology in the framework should allow for the user to see the infectiousness of the nosocomial disease to different groups of people: patiens, health care workers, so that the spread of the disease can be assessed by who is most likely to be the cause of further spreading.
+
+Several assumptions will be made throughout the project, most notably that a constant number of agents (patients, HCWs, surfaces) will be in the hospital at a given time. The events of the spread are assumed to be Markovian ( the probability of an event occurring is affected by another event preceding it)
+
 ## Data accessibility and Authors' contributions - Eoin
