@@ -67,6 +67,8 @@ The Markov chain consists of a system that is able to transition from state to s
 ## Section 3 - Ben
 ### Section 3.1 - Ben
 This model focuses on a hospital with Np patients and Nhcw healthcare workers. Patients can be colonized or uncolonized and are discharged at rate μ. New patients take their place as soon as they leave and the new patients have chance σ of being infected. HCWs wash their hands at rate μ' Colonized patients contaminate the hands of hcws at rate β′, whilst contaminated hands of hcws contaminate patients at rate β. It is assumed in [21] that each colonized patient is detected at rate γ, which can be incorporated here by setting δ(i1, i2) = γi1 (i.e. outbreak declaration occurs upon detection of the first colonized patient). This case sets m to 2 for simplicity sake. The diagrams in the paper perfectly explain everything past this
+
+![graph](https://github.com/imgo7/Group8-ABM/blob/research-additions/image/case1.jpg)
 ### Section 3.2 - Akinfolarin
 ### Section 3.3 - Akinfolarin
 ### Section 3.4 - Kian
