@@ -68,7 +68,10 @@ The Markov chain consists of a system that is able to transition from state to s
 ### Section 3.1 - Ben
 This model focuses on a hospital with Np patients and Nhcw healthcare workers. Patients can be colonized or uncolonized and are discharged at rate μ. New patients take their place as soon as they leave and the new patients have chance σ of being infected. HCWs wash their hands at rate μ' Colonized patients contaminate the hands of hcws at rate β′, whilst contaminated hands of hcws contaminate patients at rate β. It is assumed in [21] that each colonized patient is detected at rate γ, which can be incorporated here by setting δ(i1, i2) = γi1 (i.e. outbreak declaration occurs upon detection of the first colonized patient). This case sets m to 2 for simplicity sake. The diagrams in the paper perfectly explain everything past this
 ### Section 3.2 - Akinfolarin
+This model focuses on differnt types of helathcare workers such as standard healthcare workers or volunteers. The model looks at a hospital with Np patients, Nhwc healthcare workers and Nv volunteers.
+Patients are admitted at rate λ, who can already be colonized upon admission with probability φ, and discharged at rate δC (if colonized) or δU (if non-colonized). Each HCW-patient transmission consists of two contributions, the hygiene level during HWC-patient contact as well as the contact rate. The same can also be siad of voulunteer-patient transmissions.
 ### Section 3.3 - Akinfolarin
+This model focues on Assesing enviromental contamination. Due to the fact pathogens such as MRSA and VRE are able to survive on dry surfaces for weeks, there has been an increase in the amount of studies taken up to discussing enviromental contamination. Np patients, Ns HCWs and Ne surfaces are considered. Colonized patients are discharged at rate γ′, while non-colonized patients are discharged at rate γ. Discharged patients are immediately replaced by newly admitted patients, who can be colonized with probability ϕ. HCWs wash their hands at rate μ, while surfaces are decontaminated at rate κ.
 ### Section 3.4 - Kian
 ### Section 3.5 - Kian
 ## Section 4 - Eoin
