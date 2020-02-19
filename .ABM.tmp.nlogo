@@ -43,6 +43,13 @@ GRAPHICS-WINDOW
 ticks
 30.0
 
+OUTPUT
+0
+0
+0
+0
+12
+
 BUTTON
 18
 19
