@@ -1,3 +1,7 @@
+breed [doctors doctor]
+breed [patients patient]
+turtles-own [infected]
+
 to setup
   clear-all ;to refresh the model every time it is run
   setup-hospital ; setup all people in hospital
@@ -5,15 +9,21 @@ to setup
 end
 
 to setup-hospital
-  create-turtles 40
+  create-doctors 10
   [
     setxy random-xcor random-ycor
-    ;set infected ; if the person is infected
-    ;set uninfected ; if the person is uninfected
-    ;assign-type ; whether infected/unifected
+    set infected false
     set shape "dot"
-    set color blue ;remove once classed as infected/unifected
-  ] ;total number of people
+    set color blue ; for now blue can indicate an uninfected turtle
+  ]
+
+  create-patients 40
+  [
+    setxy random-xcor random-ycor
+    set infected false
+    set shape "dot"
+    set color blue ; for now blue can indicate an uninfected turtle
+  ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
