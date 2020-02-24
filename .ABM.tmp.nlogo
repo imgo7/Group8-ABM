@@ -41,7 +41,7 @@ to calc-r0
 
   ;first the number of infected people
 
-  set r0 0 ; for now reproduction number is 0
+  set r0
 end
 
 to infect
