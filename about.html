@@ -22,10 +22,18 @@
 <body>
 ​
 <div class="jumbotron p-3 mb-2 bg-info text-white text-center" style="margin-bottom:0">
+  <img src="/Users/folafifo/github/Group8-ABM/SWLogo.png">
  <h1>SureWash ABM</h1>
  <p>An interactive website where users can change parameters to the study, and from that, simulate the spread of a nosocomial disease throughout a hospital. </p>
 </div>
-​
+​<style>
+.jumbotron img{
+  height: 30px;
+  width: auto;
+  display: table-cell;
+  vertical-align: left;
+}
+</style>
 <nav class="navbar navbar-expand-sm bg-success navbar-dark">
  <a class="navbar-brand" href="/project.html">Home</a>
  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -37,22 +45,16 @@
        <a class="nav-link" href="/about.html">About</a>
      </li>
      <li class="nav-item">
-       <a class="nav-link" href="#">Model 01</a>
-     </li>
-     <li class="nav-item">
-       <a class="nav-link" href="#">Model 02</a>
-     </li>
-     <li class="nav-item">
-       <a class="nav-link" href="#">Model 03</a>
+       <a class="nav-link" href="#">Model</a>
      </li>
      <li class="nav-item">
        <a class="nav-link" href="/upload_model.html">Upload Model</a>
      </li>
      <li class="nav-item">
        <a class="nav-link" href="https://royalsocietypublishing.org/doi/full/10.1098/rsif.2018.0060">Link To Article</a>
-     </li>   
+     </li>
    </ul>
- </div> 
+ </div>
 </nav>
 ​
 <div class="container" style="margin-top:30px">
@@ -62,7 +64,7 @@
     <h2>The Model</h2>
     <img src="model.jpg">
     <p>
-        The process of infection takes into account the equation: X = {X(t)  = (I<sub>1</sub>(t),I<sub>2</sub>(t), …, I<sub>k</sub>(t))} where t ≥ 0 and I<sub>N</sub>(t) relates the number of Infectives at a certain level N at time t. The level is defined by the case study in question. The number of likely cases S<sub>N</sub>(t) is given by the equation L<sub>N</sub>-I<sub>N</sub>(t) for t≥0. An additional equation is found to define the states present. The states (i<sub>1</sub>,…, i<sub>k</sub>) refer to the number of contaminated individuals i<sub>N</sub> at the levels 1 ≤ N ≤ k. The final state F indicates the end of the transition of states. 
+        The process of infection takes into account the equation: X = {X(t)  = (I<sub>1</sub>(t),I<sub>2</sub>(t), …, I<sub>k</sub>(t))} where t ≥ 0 and I<sub>N</sub>(t) relates the number of Infectives at a certain level N at time t. The level is defined by the case study in question. The number of likely cases S<sub>N</sub>(t) is given by the equation L<sub>N</sub>-I<sub>N</sub>(t) for t≥0. An additional equation is found to define the states present. The states (i<sub>1</sub>,…, i<sub>k</sub>) refer to the number of contaminated individuals i<sub>N</sub> at the levels 1 ≤ N ≤ k. The final state F indicates the end of the transition of states.
         <br><br>Removal occurs at level N:  (i<sub>1</sub>,…,i<sub>k</sub> )→(i<sub>1</sub>,…,i<sub>N</sub>-1,…,i<sub>k</sub>) at rate α<sub>N</sub>(i<sub>1</sub>,…,i<sub>k</sub>)
         <br><br>
         Infection occurs at level N:  (i<sub>1</sub>,…,i<sub>k</sub> )→(i<sub>1</sub>,…,i<sub>N</sub>-1,…,ik) at rate β<sub>N</sub>(i<sub>1</sub>,…,i<sub>k</sub>)

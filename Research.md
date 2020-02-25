@@ -2,7 +2,7 @@
 
 This project uses the following research article as a reference :
 López-García, Martín  and Kypraios,Theodore 2018, 'A unified stochastic modelling framework for the spread of nosocomial infections', *Journal of the Royal Society Interface*, vol. 15, no. 143.
-We have summarised the paper's findings in our own words. 
+We have summarised the paper's findings in our own words.
 
 ## Abstract - Can
 **This paper illustrates:**
@@ -29,7 +29,7 @@ We have summarised the paper's findings in our own words.
     3. active  screening  for colonization among patients
     4. isolation of colonized individuals
     5. managing staffing levels
-    6. antibiotic prescription 
+    6. antibiotic prescription
     7. decolonization procedures
     8. patient cohorting
 - Using **agent-based models** in this paper:  
@@ -46,11 +46,11 @@ We have summarised the paper's findings in our own words.
     1. highlight the importance of maintaining high hand-hygiene compliance levelsby HCWs
     2. support control strategies including to improve environmental cleaning during nosocomial outbreaks
     3. show the potential of some healthcare workers to act as super-spreaders during these outbreaks
-    
+
 ## Section 2 - Imalia
-The structure suggested by the author to build the agent-based model is directly outlined within this section.  The authors propose a model whereby the agents existing in the model can be classed under different types such as patients, healthcare workers (HCWs), surfaces and patients situated in alternative rooms. The basis of the proposed model is built on the concept of a continuous-time Markov chain. The reason for this selection is clarified by the authors who expand the logic behind their choice by stating that the Markov chain facilitates the necessary accuracy needed to calculate the reproduction number of the various agents. This leads to a method of measuring the number of infections that are introduced by the agent. The model also measures the degree of infectiousness of an individual agents when interacting with different individuals. 
+The structure suggested by the author to build the agent-based model is directly outlined within this section.  The authors propose a model whereby the agents existing in the model can be classed under different types such as patients, healthcare workers (HCWs), surfaces and patients situated in alternative rooms. The basis of the proposed model is built on the concept of a continuous-time Markov chain. The reason for this selection is clarified by the authors who expand the logic behind their choice by stating that the Markov chain facilitates the necessary accuracy needed to calculate the reproduction number of the various agents. This leads to a method of measuring the number of infections that are introduced by the agent. The model also measures the degree of infectiousness of an individual agents when interacting with different individuals.
 ### Section 2.1 - Imalia
-The process of infection takes into account the equation: X = {X(t)  = (I<sub>1</sub>(t),I<sub>2</sub>(t), …, I<sub>k</sub>(t))} where t ≥ 0 and I<sub>N</sub>(t) relates the number of Infectives at a certain level N at time t. The level is defined by the case study in question. The number of likely cases S<sub>N</sub>(t) is given by the equation L<sub>N</sub>-I<sub>N</sub>(t) for t≥0. An additional equation is found to define the states present. The states (i<sub>1</sub>,…, i<sub>k</sub>) refer to the number of contaminated individuals i<sub>N</sub> at the levels 1 ≤ N ≤ k. The final state F indicates the end of the transition of states. 
+The process of infection takes into account the equation: X = {X(t)  = (I<sub>1</sub>(t),I<sub>2</sub>(t), …, I<sub>k</sub>(t))} where t ≥ 0 and I<sub>N</sub>(t) relates the number of Infectives at a certain level N at time t. The level is defined by the case study in question. The number of likely cases S<sub>N</sub>(t) is given by the equation L<sub>N</sub>-I<sub>N</sub>(t) for t≥0. An additional equation is found to define the states present. The states (i<sub>1</sub>,…, i<sub>k</sub>) refer to the number of contaminated individuals i<sub>N</sub> at the levels 1 ≤ N ≤ k. The final state F indicates the end of the transition of states.
 <br><br>Removal occurs at level N:  (i<sub>1</sub>,…,i<sub>k</sub> )→(i<sub>1</sub>,…,i<sub>N</sub>-1,…,i<sub>k</sub>) at rate α<sub>N</sub>(i<sub>1</sub>,…,i<sub>k</sub>)
 <br><br>
 Infection occurs at level N:  (i<sub>1</sub>,…,i<sub>k</sub> )→(i<sub>1</sub>,…,i<sub>N</sub>-1,…,ik) at rate β<sub>N</sub>(i<sub>1</sub>,…,i<sub>k</sub>)
@@ -70,14 +70,14 @@ This model focuses on a hospital with Np patients and Nhcw healthcare workers. P
 
 ![graph](https://github.com/imgo7/Group8-ABM/blob/research-additions/image/case1.jpg)
 ### Section 3.2 - Akinfolarin
-This model focuses on differnt types of helathcare workers such as standard healthcare workers or volunteers. The model looks at a hospital with Np patients, Nhwc healthcare workers and Nv volunteers.
-Patients are admitted at rate λ, who can already be colonized upon admission with probability φ, and discharged at rate δC (if colonized) or δU (if non-colonized). Each HCW-patient transmission consists of two contributions, the hygiene level during HWC-patient contact as well as the contact rate. The same can also be siad of voulunteer-patient transmissions.
+This model focuses on different types of healthcare workers such as standard healthcare workers or volunteers. The model looks at a hospital with Np patients, Nhwc healthcare workers and Nv volunteers.
+Patients are admitted at rate λ, who can already be colonised upon admission with probability φ, and discharged at rate δC (if colonised) or δU (if non-colonised). Each HCW-patient transmission consists of two contributions, the hygiene level during HWC-patient contact as well as the contact rate. The same can also be said of volunteer-patient transmissions.
 ### Section 3.3 - Akinfolarin
-This model focues on Assesing enviromental contamination. Due to the fact pathogens such as MRSA and VRE are able to survive on dry surfaces for weeks, there has been an increase in the amount of studies taken up to discussing enviromental contamination. Np patients, Ns HCWs and Ne surfaces are considered. Colonized patients are discharged at rate γ′, while non-colonized patients are discharged at rate γ. Discharged patients are immediately replaced by newly admitted patients, who can be colonized with probability ϕ. HCWs wash their hands at rate μ, while surfaces are decontaminated at rate κ.
+This model focuses on Assessing environmental contamination. Due to the fact pathogens such as MRSA and VRE are able to survive on dry surfaces for weeks, there has been an increase in the amount of studies taken up to discussing environmental contamination. Np patients, Ns HCWs and Ne surfaces are considered. Colonised patients are discharged at rate γ′, while non-colonised patients are discharged at rate γ. Discharged patients are immediately replaced by newly admitted patients, who can be colonised with probability ϕ. HCWs wash their hands at rate μ, while surfaces are decontaminated at rate κ.
 ### Section 3.4 - Kian
 The gist of this case study is that patients in the same room will infect at a different rate to patients in different rooms. βDR represents the rate of transmission in different rooms( DR = different rooms), and βSR for same rooms. No outbreak detection is assumed by setting δ(i1, i2, i3, i4) to 0. This case study does not expand on any of the maths, but supports "patient cohorting as an infection control strategy, where a given HCW treating patients in the same room would avoid, when possible". This is interesting to model but not useful until later stage of the project in my opinion.
 ### Section 3.5 - Kian
-This case study offers another interesting angle at modelling the spread. The case study looks at the possability of health care workers(HCWs) being super spreaders. Three catagories of HCWs are assigned (AP1, AP2, Peri), where βAP1 > βAP2 > βPeri. β represents the rate of reproduction, so basically how infectious an agent is. It is also assumed that AP1 (a nurse for example) sees fewer patiets that an AP2 (GP for example), which in turn sees fewer patients than a peripatetic HCW (one who travells and has many appointments in a day). 
+This case study offers another interesting angle at modelling the spread. The case study looks at the possability of health care workers(HCWs) being super spreaders. Three catagories of HCWs are assigned (AP1, AP2, Peri), where βAP1 > βAP2 > βPeri. β represents the rate of reproduction, so basically how infectious an agent is. It is also assumed that AP1 (a nurse for example) sees fewer patiets that an AP2 (GP for example), which in turn sees fewer patients than a peripatetic HCW (one who travells and has many appointments in a day).
 ## Section 4 - Eoin
 The model used within the case study allows for the user to analyse the spread while being able to consider different hypotheses regarding the spread of a hospital-born disease or infection and to consider the different variables that could be important factors of the spread of nosocomial diseases, i.e hand hygiene routines in the hospital, environmental cleaning, etc. The methodology in the framework should allow for the user to see the infectiousness of the nosocomial disease to different groups of people: patiens, health care workers, so that the spread of the disease can be assessed by who is most likely to be the cause of further spreading.
 
