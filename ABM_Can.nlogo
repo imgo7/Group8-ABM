@@ -1,54 +1,67 @@
-breed [doctors doctor]
-breed [patients patient]
-turtles-own [infected]
-
 globals
 [
-  r0 ; reproduction number of patient among HCWs
+  ;; totoal number of infected people
+  num-sick
+  ;; counter used to keep the model running for a little while after the last turtle gets infected
+  delay
 ]
 
+breed [Patients Patient]
+breed [HCWs HCW]
+breed [Volunteers Volunteer]
+
+turtles-own
+[
+  infected?
+]
+
+;; set up
 to setup
-  clear-all ;to refresh the model every time it is run
-  setup-hospital ; setup all people in hospital
-  reset-ticks ; set tick counter to 0
+  clear-all
+  setup-hospital
 end
 
 to setup-hospital
-  create-doctors 10
+  set-default-shape Patients "person"
+  set-default-shape HCWs "person"
+  set-default-shape Volunteers "person"
+  set num-sick 0;
+  set delay 0;
+  create-some-patients
+  create-some-HCWs
+  create-some-Volunteers
+  reset-ticks
+end
+
+to create-some-patients
+  create-patients Patients-number
   [
-    setxy random-xcor random-ycor
-    set infected false
-    set shape "dot"
-    set color blue ; for now blue can indicate an uninfected turtle
+    setxy random-pxcor random-pycor
+    set color red
+    set heading 90 * random 4
+    set infected? false
   ]
+end
 
-  create-patients 40
+to create-some-HCWs
+  create-HCWs HCWs-number
   [
-    setxy random-xcor random-ycor
-    set infected false
-    set shape "dot"
-    set color white ; for now white can indicate an uninfected turtle
+    setxy random-pxcor random-pycor
+    set color blue
+    set heading 90 * random 4
+    set infected? false
   ]
 end
 
-;method to create infection
-to infection-outbreak
-  ask one-of patients [infect] ; run command: get a random patient agent
+to create-some-Volunteers
+  create-Volunteers Volunteers-number
+  [
+    setxy random-pxcor random-pycor
+    set color green
+    set heading 90 * random 4
+    set infected? false
+  ]
 end
-
-;method to calculate the reproduction number of patient among HCWs
-to calc-r0
-
-  ;first the number of infected people
-
-  set r0 0 ; for now reproduction number is 0
-end
-
-to infect
-  set infected true
-  set color red
-end
-
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
@@ -78,10 +91,10 @@ ticks
 30.0
 
 BUTTON
-18
-19
-81
-52
+4
+17
+70
+50
 NIL
 setup
 NIL
@@ -95,33 +108,48 @@ NIL
 1
 
 SLIDER
-18
-81
-190
-114
-Hand_hygiene
-Hand_hygiene
 0
-100
-50.0
+60
+172
+93
+Patients-number
+Patients-number
+0
+1000
+19.0
 1
 1
-%
+NIL
 HORIZONTAL
 
 SLIDER
-19
-137
-193
-170
-Cleaning_Regimen
-Cleaning_Regimen
+0
+106
+172
+139
+HCWs-number
+HCWs-number
 0
 100
-50.0
+14.0
 1
 1
-%
+NIL
+HORIZONTAL
+
+SLIDER
+0
+150
+172
+183
+Volunteers-number
+Volunteers-number
+0
+10
+2.0
+1
+1
+NIL
 HORIZONTAL
 
 @#$#@#$#@

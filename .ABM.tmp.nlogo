@@ -27,7 +27,7 @@ to setup-hospital
     setxy random-xcor random-ycor
     set infected false
     set shape "dot"
-    set color white ; for now white can indicate an uninfected turtle
+    set color blue ; for now blue can indicate an uninfected turtle
   ]
 end
 
@@ -41,13 +41,15 @@ to calc-r0
 
   ;first the number of infected people
 
-  set r0 0 ; for now reproduction number is 0
+  set r0
 end
 
 to infect
   set infected true
   set color red
 end
+
+
 
 @#$#@#$#@
 GRAPHICS-WINDOW
