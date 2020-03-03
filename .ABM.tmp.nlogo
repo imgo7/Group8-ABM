@@ -1,39 +1,80 @@
-breed [doctors doctor]
-breed [patients patient]
-turtles-own [infected]
+breed [HCWs HCW] ;healthcare worker
+breed [volunteers volunteer] ; volunteer in ward
+breed [patients patient] ;patients
+
+HCWs-own[HCWtype] ; type of healthcare worker
+
+turtles-own
+[
+  infected? ;switch - whether the turtle is infected or not
+  infected-people ; number of people the turtle has infected
+]
 
 globals
 [
-  r0 ; reproduction number of patient among HCWs
+ prev-infected ; previous tick - total number of infected people
+ phi ; probability of patient being infected
+ tRate ; transmission rate between patients and healthcare workers
+ approx_r0 ;approximate reproduction number- patient amongst HCWs
+ noOfSims ; number of simulations for reproduction number
 ]
 
 to setup
   clear-all ;to refresh the model every time it is run
   setup-hospital ; setup all people in hospital
+  set tRate 0.72 ; transmission rate set
+  set noOfSims 10000 ; number of simulations for R0
+  set approx_r0 0 ; reproduction number at the start is 0
   reset-ticks ; set tick counter to 0
 end
 
 to setup-hospital
-  create-doctors 10
+  create-HCWs 14 ; healthcare workers
   [
     setxy random-xcor random-ycor
-    set infected false
+    set infected? false ; switch to show if infected
     set shape "dot"
-    set color blue ; for now blue can indicate an uninfected turtle
+    set color white ; for now white can indicate an uninfected turtle
   ]
 
-  create-patients 40
+  create-patients 7
   [
     setxy random-xcor random-ycor
-    set infected false
+    set infected? false ;switch to show if infected
     set shape "dot"
-    set color blue ; for now blue can indicate an uninfected turtle
+    set color white ; for now white can indicate an uninfected turtle
   ]
+
+  create-volunteers 2
+  [
+    setxy random-xcor random-ycor
+    set infected? false ;switch to show if infected
+    set shape "dot"
+    set color white ; for now white can indicate an uninfected turtle
+  ]
+   ; infection procedure - start of infection
+    ask turtle 1 ; hospital begins with 1 infected patient (turtle id 1)
+    [
+      set infected? true
+    ]
+
+    ask turtle 2 ; ask turtle id 2 to be 1 infected HCW
+    [
+      set infected? true
+
+    ]
+
+
+end
+; set the turtle's colour to red if infected
+to assign-turtle-color
+  if infected?
+  [ set color red ]
 end
 
 ;method to create infection
 to infection-outbreak
-  ask one-of patients [infect] ; run command: get a random patient agent
+  ;ask one-of patients [infect] ; run command: get a random patient agent
 end
 
 ;method to calculate the reproduction number of patient among HCWs
@@ -41,15 +82,8 @@ to calc-r0
 
   ;first the number of infected people
 
-  set r0
+  set approx_r0 0 ; for now reproduction number is 0
 end
-
-to infect
-  set infected true
-  set color red
-end
-
-
 
 @#$#@#$#@
 GRAPHICS-WINDOW
