@@ -67,25 +67,77 @@ to setup-hospital
 
 
 end
+
+to go
+  ask turtles
+  [
+    move-hospital ; ask the turtles to move about
+  ]
+  ask turtles with [infected?] ;all turtles that are infected
+  [
+    infection-outbreak ; spread infection amongst agents
+  ]
+  ask turtles
+  [
+    assign-turtle-color ; assign infected/uninfected colour
+    calc-r0 ; calculate the reproduction number
+  ]
+
+  tick ; advance tick counter by 1
+
+end
+
 ; set the turtle's colour to red if infected
 to assign-turtle-color
   if infected?
   [ set color red ]
 end
 
-;method to create infection
+; The turtles move about randomly
+to move-hospital ; get the turtles to interact
+  lt random 360; turn left randomly
+  fd 5 ; move forward 5 steps
+end
+
+;method to create the spread of infection
 to infection-outbreak
-  ;ask one-of patients [infect] ; run command: get a random patient agent
+  ; the infection spreads amongst the agent's neighbours
+  let hospital-neighbours (turtles-on neighbors4) ; selecting the turtles in the 4 surrounding patches
+  with [
+    not infected? ; neighbours that are not infected
+  ]
+  ask hospital-neighbours
+  [ if random-float 1 < tRate ; chance of infection (taking into account transmission rate)
+    [ set infected? true ; becomes infected
+    ]
+  ]
 end
 
 ;method to calculate the reproduction number of patient among HCWs
 to calc-r0
+let sim_no 0 ; simulation =0 first one
+  let t 0 ; time
+  let finale 0 ;the end of the simulation process
+  let infected_patients 0 ; at the start no one is infected
+  let infected_HCWs 0
 
-  ;first the number of infected people
+  ;this ABM has 1 infected patient and 1 infected HCW
+  set infected_patients 1
+  set infected_HCWs 1
 
-  set approx_r0 0 ; for now reproduction number is 0
+  ;After running the Case Study 3 simulation code to find the mean reproduction number - the code was
+  ;provided by the research paper's author
+  ;24.0 hand-washing rate
+  let run_0 12.216399999999998
+  let run_1 11.805700000000003
+  let run_2 11.945299999999998
+  let run_3 12.145800000000003
+  let run_4  12.105900000000009
+
+; the approximate r0 is 12 - from Case Study 3 of the research paper
+  set approx_r0 ((run_0 + run_1 + run_2 + run_3 + run_4) / 5) ; approximate r0
+  show approx_r0 ; print r0 to console
 end
-
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
@@ -131,35 +183,22 @@ NIL
 NIL
 1
 
-SLIDER
-18
-81
-190
-114
-Hand_hygiene
-Hand_hygiene
+BUTTON
+111
+20
+174
+53
+go
+go
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
 0
-100
-50.0
-1
-1
-%
-HORIZONTAL
-
-SLIDER
-19
-137
-193
-170
-Cleaning_Regimen
-Cleaning_Regimen
-0
-100
-50.0
-1
-1
-%
-HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
