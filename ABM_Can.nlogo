@@ -124,9 +124,9 @@ HORIZONTAL
 
 SLIDER
 0
-106
+109
 172
-139
+142
 HCWs-number
 HCWs-number
 0
@@ -138,10 +138,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-0
-150
-172
 183
+110
+355
+143
 Volunteers-number
 Volunteers-number
 0
@@ -154,9 +154,9 @@ HORIZONTAL
 
 SLIDER
 0
-196
+178
 209
-229
+211
 HCW-hand-washing-rate
 HCW-hand-washing-rate
 0
@@ -169,9 +169,9 @@ HORIZONTAL
 
 SLIDER
 0
-242
+285
 257
-275
+318
 Volunteers-hand-washing-rate
 Volunteers-hand-washing-rate
 0
@@ -181,6 +181,96 @@ Volunteers-hand-washing-rate
 1
 %
 HORIZONTAL
+
+SLIDER
+0
+221
+172
+254
+HCW-hygiene-rate
+HCW-hygiene-rate
+0
+1
+0.46
+0.01
+1
+NIL
+HORIZONTAL
+
+SLIDER
+0
+331
+202
+364
+Volunteer-hygiene-rate
+Volunteer-hygiene-rate
+0
+1
+0.23
+0.01
+1
+NIL
+HORIZONTAL
+
+TEXTBOX
+0
+426
+150
+465
+Probability of admitted patient being colonized:\nphi=0.165
+12
+0.0
+1
+
+TEXTBOX
+0
+477
+150
+516
+Discharge rate of non-colonized patients:\ndeltaU=1.0/7.0
+12
+0.0
+1
+
+TEXTBOX
+158
+477
+308
+516
+Discharge rate of colonized patients:\ndeltaC=1.0/13.0
+12
+0.0
+1
+
+TEXTBOX
+0
+530
+150
+569
+Patient-HCW transmission rate:\nbetaPH = 0.72
+12
+0.0
+1
+
+TEXTBOX
+159
+532
+309
+571
+Patient-Volunteer transmission rate:\nbetaPV = 0.20
+12
+0.0
+1
+
+TEXTBOX
+0
+401
+150
+419
+Keys:
+16
+0.0
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
