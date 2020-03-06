@@ -28,23 +28,32 @@ to setup-hospital
   set num-sick 0;
   set delay 0;
   create-some-patients
+  initial-colonized-patients
   create-some-HCWs
   create-some-Volunteers
   reset-ticks
 end
 
 to create-some-patients
-  create-patients Patients-number
+  create-Patients initial-patient
   [
     setxy random-pxcor random-pycor
-    set color red
+    set color yellow
     set heading 90 * random 4
-    set infected? false
+    set infected? (who < initial-patient * 0.165)
+    if infected?
+      [ set infected? true
+        set shape word shape " sick" ]
+
   ]
 end
 
+to initial-colonized-patients
+
+end
+
 to create-some-HCWs
-  create-HCWs HCWs-number
+  create-HCWs initial-HCW
   [
     setxy random-pxcor random-pycor
     set color blue
@@ -54,13 +63,35 @@ to create-some-HCWs
 end
 
 to create-some-Volunteers
-  create-Volunteers Volunteers-number
+  create-Volunteers initial-volunteer
   [
     setxy random-pxcor random-pycor
     set color green
     set heading 90 * random 4
     set infected? false
   ]
+end
+
+
+;;;;;;;;;;;;;;;;;;;;;;;
+;; Runtime Functions ;;
+;;;;;;;;;;;;;;;;;;;;;;;
+
+to go
+  ;; in order to extend the plot for a little while
+  ;; after all the turtles are infected...
+  if num-sick = count turtles
+    [ set delay delay + 1  ]
+  if delay > 50
+    [ stop ]
+
+end
+
+;; set the appropriate variables to make this turtle sick
+to get-sick ;; turtle procedure
+  if not infected?
+  [ set infected? true
+  set shape word shape " sick" ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -106,51 +137,6 @@ NIL
 NIL
 NIL
 1
-
-SLIDER
-0
-60
-172
-93
-Patients-number
-Patients-number
-0
-1000
-19.0
-1
-1
-NIL
-HORIZONTAL
-
-SLIDER
-0
-109
-172
-142
-HCWs-number
-HCWs-number
-0
-100
-14.0
-1
-1
-NIL
-HORIZONTAL
-
-SLIDER
-183
-110
-355
-143
-Volunteers-number
-Volunteers-number
-0
-10
-2.0
-1
-1
-NIL
-HORIZONTAL
 
 SLIDER
 0
@@ -271,6 +257,51 @@ Keys:
 16
 0.0
 1
+
+SLIDER
+0
+66
+172
+99
+initial-patient
+initial-patient
+0
+100
+80.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+0
+109
+172
+142
+initial-HCW
+initial-HCW
+0
+100
+14.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+187
+109
+359
+142
+initial-volunteer
+initial-volunteer
+0
+100
+2.0
+1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -488,6 +519,16 @@ Polygon -7500403 true true 105 90 120 195 90 285 105 300 135 300 150 225 165 300
 Rectangle -7500403 true true 127 79 172 94
 Polygon -7500403 true true 195 90 240 150 225 180 165 105
 Polygon -7500403 true true 105 90 60 150 75 180 135 105
+
+person sick
+false
+0
+Circle -7500403 true true 110 5 80
+Polygon -7500403 true true 105 90 120 195 90 285 105 300 135 300 150 225 165 300 195 300 210 285 180 195 195 90
+Rectangle -7500403 true true 127 79 172 94
+Polygon -7500403 true true 195 90 240 150 225 180 165 105
+Polygon -7500403 true true 105 90 60 150 75 180 135 105
+Circle -2674135 true false 178 163 95
 
 plant
 false
