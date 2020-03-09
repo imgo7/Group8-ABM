@@ -155,15 +155,21 @@ HORIZONTAL
 @#$#@#$#@
 ## WHAT IS IT?
 
-(a general understanding of what the model is trying to show or explain)
+(This model simulates the spread of nosocomial infections whilst accountung for volunteers that are working in the hospital. It also considers the spread of MRSA in the respiratory intensive care unit.)
 
 ## HOW IT WORKS
 
-(what rules the agents use to create the overall behavior of the model)
+(The simulation is based on the mathematical model presented on the about page of the website. The parameters entered by the user are passed on to the model and then the result is presented to the user. )
 
 ## HOW TO USE IT
 
-(how to use the model, including a description of each of the items in the Interface tab)
+(The hand hygiene slider on the page allows the user to set what percentage of healthcare workers follow the hand hygiene regimen they're required to follow.
+
+The cleaning regimen slider allows the user to control the quality of the hand cleaning regimen that is in place within the hospital, where 100% means that it kills all bacteria on the hands, and 0% means that it kills none of the bacteria.
+
+The model speed slider allows the user to speed up or slow down how often the simulation changes states.
+
+Once the user has set the variables, they click on setup to generate the starting state of the simulation.)
 
 ## THINGS TO NOTICE
 
