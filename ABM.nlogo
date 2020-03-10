@@ -1,54 +1,143 @@
-breed [doctors doctor]
-breed [patients patient]
-turtles-own [infected]
+breed [HCWs HCW] ;healthcare worker
+breed [volunteers volunteer] ; volunteer in ward
+breed [patients patient] ;patients
+
+HCWs-own[HCWtype] ; type of healthcare worker
+
+turtles-own
+[
+  infected? ;switch - whether the turtle is infected or not
+  infected-people ; number of people the turtle has infected
+]
 
 globals
 [
-  r0 ; reproduction number of patient among HCWs
+ prev-infected ; previous tick - total number of infected people
+ phi ; probability of patient being infected
+ tRate ; transmission rate between patients and healthcare workers
+ approx_r0 ;approximate reproduction number- patient amongst HCWs
+ noOfSims ; number of simulations for reproduction number
 ]
 
 to setup
   clear-all ;to refresh the model every time it is run
   setup-hospital ; setup all people in hospital
+  set tRate 0.72 ; transmission rate set
+  set noOfSims 10000 ; number of simulations for R0
+  set approx_r0 0 ; reproduction number at the start is 0
   reset-ticks ; set tick counter to 0
 end
 
 to setup-hospital
-  create-doctors 10
+  create-HCWs 14 ; healthcare workers
   [
     setxy random-xcor random-ycor
-    set infected false
-    set shape "dot"
-    set color blue ; for now blue can indicate an uninfected turtle
-  ]
-
-  create-patients 40
-  [
-    setxy random-xcor random-ycor
-    set infected false
+    set infected? false ; switch to show if infected
     set shape "dot"
     set color white ; for now white can indicate an uninfected turtle
   ]
+
+  create-patients 7
+  [
+    setxy random-xcor random-ycor
+    set infected? false ;switch to show if infected
+    set shape "dot"
+    set color white ; for now white can indicate an uninfected turtle
+  ]
+
+  create-volunteers 2
+  [
+    setxy random-xcor random-ycor
+    set infected? false ;switch to show if infected
+    set shape "dot"
+    set color white ; for now white can indicate an uninfected turtle
+  ]
+   ; infection procedure - start of infection
+    ask turtle 1 ; hospital begins with 1 infected patient (turtle id 1)
+    [
+      set infected? true
+      assign-turtle-color ; assign each agent's colour
+    ]
+
+    ask turtle 2 ; ask turtle id 2 to be 1 infected HCW
+    [
+      set infected? true
+      assign-turtle-color ; assign each agent's colour
+    ]
+
+
 end
 
-;method to create infection
+to go
+  ask turtles
+  [
+    move-hospital ; ask the turtles to move about
+  ]
+  ask turtles with [infected?] ;all turtles that are infected
+  [
+    infection-outbreak ; spread infection amongst agents
+  ]
+  ask turtles
+  [
+    assign-turtle-color ; assign infected/uninfected colour
+    calc-r0 ; calculate the reproduction number
+  ]
+
+  tick ; advance tick counter by 1
+
+end
+
+; set the turtle's colour to red if infected
+to assign-turtle-color
+  if infected?
+  [ set color red ]
+end
+
+; The turtles move about randomly
+to move-hospital ; get the turtles to interact
+  lt random 360; turn left randomly
+  fd 5 ; move forward 5 steps
+end
+
+;method to create the spread of infection
 to infection-outbreak
-  ask one-of patients [infect] ; run command: get a random patient agent
+  ; the infection spreads amongst the agent's neighbours
+  let hospital-neighbours (turtles-on neighbors4) ; selecting the turtles in the 4 surrounding patches
+  with [
+    not infected? ; neighbours that are not infected
+  ]
+  ask hospital-neighbours
+  [ if random-float 1 < tRate ; chance of infection (taking into account transmission rate)
+    [ set infected? true ; becomes infected
+    ]
+  ]
 end
 
 ;method to calculate the reproduction number of patient among HCWs
 to calc-r0
+let sim_no 0 ; simulation =0 first one
+  let t 0 ; time
+  let finale 0 ;the end of the simulation process
+  let infected_patients 0 ; at the start no one is infected
+  let infected_HCWs 0
 
-  ;first the number of infected people
+  ;this ABM has 1 infected patient and 1 infected HCW
+  set infected_patients 1
+  set infected_HCWs 1
 
-  set r0 0 ; for now reproduction number is 0
+  ;After running the Case Study 3 simulation code to find the mean reproduction number - the code was
+  ;provided by the research paper's author
+  ;24.0 hand-washing rate
+  let run_0 12.216399999999998
+  let run_1 11.805700000000003
+  let run_2 11.945299999999998
+  let run_3 12.145800000000003
+  let run_4  12.105900000000009
+
+; the approximate r0 is 12 - from Case Study 3 of the research paper
+  set approx_r0 ((run_0 + run_1 + run_2 + run_3 + run_4) / 5) ; approximate r0
+  show approx_r0 ; print r0 to console
 end
-
-to infect
-  set infected true
-  set color red
-end
-
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
@@ -94,35 +183,22 @@ NIL
 NIL
 1
 
-SLIDER
-18
-81
-190
-114
-Hand_hygiene
-Hand_hygiene
+BUTTON
+111
+20
+174
+53
+go
+go
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
 0
-100
-50.0
-1
-1
-%
-HORIZONTAL
-
-SLIDER
-19
-137
-193
-170
-Cleaning_Regimen
-Cleaning_Regimen
-0
-100
-50.0
-1
-1
-%
-HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
