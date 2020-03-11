@@ -13,7 +13,7 @@ turtles-own
 globals
 [
  prev-infected ; previous tick - total number of infected people
- phi ; probability of patient being infected
+ phi ; probability of admitted patient being infected
  tRate ; transmission rate between patients and healthcare workers
  approx_r0 ;approximate reproduction number- patient amongst HCWs
  noOfSims ; number of simulations for reproduction number
@@ -125,7 +125,7 @@ let sim_no 0 ; simulation =0 first one
   set infected_patients 1
   set infected_HCWs 1
 
-  ;After running the Case Study 3 simulation code to find the mean reproduction number - the code was
+  ;After running the Case Study 3 simulation code to find the mean reproduction number of patient to HCW - the code was
   ;provided by the research paper's author
   ;24.0 hand-washing rate
   let run_0 12.216399999999998
@@ -134,9 +134,20 @@ let sim_no 0 ; simulation =0 first one
   let run_3 12.145800000000003
   let run_4  12.105900000000009
 
+  ;After running the Case Study 3 simulation code to find the mean reproduction number of HCW to patient - the code was
+  ;provided by the research paper's author
+  ;24.0 hand-washing rate
+  let HCW_to_patient_run_0 0.017399999999999954
+  let HCW_to_patient_run_1 0.015799999999999963
+  let HCW_to_patient_run_2 0.016899999999999957
+  let HCW_to_patient_run_3 0.014999999999999966
+  let HCW_to_patient_run_4 0.014799999999999968
+
 ; the approximate r0 is 12 - from Case Study 3 of the research paper
-  set approx_r0 ((run_0 + run_1 + run_2 + run_3 + run_4) / 5) ; approximate r0
-  show approx_r0 ; print r0 to console
+  set pet_to_HCW_r0 ((run_0 + run_1 + run_2 + run_3 + run_4) / 5) ; approximate r0
+  set HCW_to_pat_r0 ((HCW_to_patient_run_0 + HCW_to_patient_run_1 + HCW_to_patient_run_2 + HCW_to_patient_run_3 + HCW_to_patient_run_4) / 5) ; approximate r0
+  show pet_to_HCW_r0 ; print r0 to console
+  show HCW_to_pat_r0 ; print r0 to console
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
