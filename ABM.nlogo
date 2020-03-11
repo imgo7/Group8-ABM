@@ -200,6 +200,16 @@ NIL
 NIL
 0
 
+TEXTBOX
+23
+71
+173
+113
+Legend:\nWhite - Uninfected person\nRed   - Infected person
+11
+0.0
+1
+
 @#$#@#$#@
 ## WHAT IS IT?
 
