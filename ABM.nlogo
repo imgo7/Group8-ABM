@@ -199,9 +199,9 @@ let sim_no 0 ; simulation =0 first one
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-210
+297
 10
-647
+734
 448
 -1
 -1
@@ -268,11 +268,29 @@ hand-hygiene-level
 hand-hygiene-level
 12
 52
-24.0
+29.0
 1
 1
 NIL
 HORIZONTAL
+
+PLOT
+5
+144
+252
+362
+Rate of spread due to patient
+NIL
+Rate of spread
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" "plot approx_r0"
 
 @#$#@#$#@
 ## WHAT IS IT?
