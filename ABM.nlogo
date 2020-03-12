@@ -175,7 +175,7 @@ let sim_no 0 ; simulation =0 first one
 ; the approximate r0 is 12 - from Case Study 3 of the research paper
   set approx_r0 ((run_0 + run_1 + run_2 + run_3 + run_4) / 5) ; approximate r0
   ]
-  show approx_r0 ; print r0 to console
+  output-print approx_r0 ; print r0 to console
    if(hand-hygiene-level = 12.0)
   [
   set approx_r0 ( 16.731599999999982) ;HCW hygiene rate 0.23
@@ -268,7 +268,7 @@ hand-hygiene-level
 hand-hygiene-level
 12
 52
-29.0
+50.0
 1
 1
 NIL
@@ -291,6 +291,23 @@ false
 "" ""
 PENS
 "default" 1.0 0 -16777216 true "" "plot approx_r0"
+
+TEXTBOX
+6
+391
+156
+433
+Legend:\n\twhite - uninfected\n\tred   - infected
+11
+0.0
+1
+
+OUTPUT
+5
+361
+170
+388
+11
 
 @#$#@#$#@
 ## WHAT IS IT?
