@@ -20,7 +20,7 @@ turtles-own
 ;; set up
 to setup
   clear-all
-  set-plot-background-color gray
+  ask patches [ set pcolor gray ]
 
   ;;
   setup-hospital
