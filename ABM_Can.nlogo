@@ -4,11 +4,21 @@ globals
   num-sick
   ;; counter used to keep the model running for a little while after the last turtle gets infected
   delay
+  ;;
+  phi
+  deltaU
+  deltaC
+  gammaH
+  gammaV
+  betaPH
+  betaPV
+  eta
+  xi
 ]
 
-breed [Patients Patient]
+breed [patients patient]
 breed [HCWs HCW]
-breed [Volunteers Volunteer]
+breed [volunteers volunteer]
 
 turtles-own
 [
@@ -18,19 +28,42 @@ turtles-own
 ;; set up
 to setup
   clear-all
+  ;; keys
+  ;Probability of admitted patient being colonized
+  set phi 0.165
+  ;Discharge rate of non-colonized patients
+  set deltaU 0.143 ;deltaU = 1.0/7.0
+  ;Discharge rate of colonized patients
+  set deltaC 0.077 ;deltaC = 1.0/13.0
+  ;HCW hand-washing rate
+  set gammaH 24.0
+  ;Volunteers hand-washing rate
+  set gammaV 12.0
+  ;Patient-HCW transmission rate
+  set betaPH 0.72
+  ;Patient-Volunteer transmission rate
+  set betaPV 0.20
+  ;HCW hygiene rate
+  set eta 0.46
+  ;Volunteer hygiene rate
+  set xi 0.23
+  ;
+  set num_sim 0
+
+  ;;
   setup-hospital
 end
 
 to setup-hospital
-  set-default-shape Patients "person"
+  set-default-shape patients "person"
   set-default-shape HCWs "person"
-  set-default-shape Volunteers "person"
+  set-default-shape volunteers "person"
   set num-sick 0;
   set delay 0;
   create-some-patients
-  initial-colonized-patients
   create-some-HCWs
   create-some-Volunteers
+  ask one-of patients [ get-sick ]
   reset-ticks
 end
 
@@ -40,16 +73,8 @@ to create-some-patients
     setxy random-pxcor random-pycor
     set color yellow
     set heading 90 * random 4
-    set infected? (who < initial-patient * 0.165)
-    if infected?
-      [ set infected? true
-        set shape word shape " sick" ]
-
+    set infected? false
   ]
-end
-
-to initial-colonized-patients
-
 end
 
 to create-some-HCWs
@@ -80,18 +105,40 @@ end
 to go
   ;; in order to extend the plot for a little while
   ;; after all the turtles are infected...
-  if num-sick = count turtles
-    [ set delay delay + 1  ]
-  if delay > 50
-    [ stop ]
+  if ticks = 10 [ stop ]
+  Move
+  ;spread-disease
 
+  tick
 end
+
+to spread-disease
+  ask patients with [infected?]
+    [spread-disease]
+  ask HCWs with [infected?]
+    [spread-disease]
+  ask volunteers with [infected?]
+    [spread-disease]
+  set num-sick count turtles with [ infected? ]
+end
+
+to Move
+  ask HCWs [setxy random-pxcor random-pycor]
+  ask volunteers [setxy random-pxcor random-pycor]
+  wait 0.5
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;
+;; Help Functions ;;
+;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; set the appropriate variables to make this turtle sick
 to get-sick ;; turtle procedure
-  if not infected?
-  [ set infected? true
-  set shape word shape " sick" ]
+  if not infected? [
+    set infected? true
+    set shape word shape " sick"
+    set num-sick num-sick + 1
+  ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -147,7 +194,7 @@ HCW-hand-washing-rate
 HCW-hand-washing-rate
 0
 100
-24.0
+25.0
 1
 1
 %
@@ -282,7 +329,7 @@ initial-HCW
 initial-HCW
 0
 100
-14.0
+15.0
 1
 1
 NIL
@@ -302,6 +349,34 @@ initial-volunteer
 1
 NIL
 HORIZONTAL
+
+BUTTON
+91
+17
+154
+50
+NIL
+go
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+MONITOR
+1053
+86
+1115
+131
+NIL
+num_sim
+17
+1
+11
 
 @#$#@#$#@
 ## WHAT IS IT?
