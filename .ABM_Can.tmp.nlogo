@@ -5,17 +5,7 @@ globals
   ;; counter used to keep the model running for a little while after the last turtle gets infected
   delay
   ;;
-  num_sim
-  ;;
-  phi
-  deltaU
-  deltaC
-  gammaH
-  gammaV
-  betaPH
-  betaPV
-  eta
-  xi
+  infection-chance
 ]
 
 breed [patients patient]
@@ -30,27 +20,6 @@ turtles-own
 ;; set up
 to setup
   clear-all
-  ;; keys
-  ;Probability of admitted patient being colonized
-  set phi 0.165
-  ;Discharge rate of non-colonized patients
-  set deltaU 0.143 ;deltaU = 1.0/7.0
-  ;Discharge rate of colonized patients
-  set deltaC 0.077 ;deltaC = 1.0/13.0
-  ;HCW hand-washing rate
-  set gammaH 24.0
-  ;Volunteers hand-washing rate
-  set gammaV 12.0
-  ;Patient-HCW transmission rate
-  set betaPH 0.72
-  ;Patient-Volunteer transmission rate
-  set betaPV 0.20
-  ;HCW hygiene rate
-  set eta 0.46
-  ;Volunteer hygiene rate
-  set xi 0.23
-  ;
-  set num_sim 0
 
   ;;
   setup-hospital
@@ -67,6 +36,7 @@ to setup-hospital
   create-some-Volunteers
   ask one-of patients [ get-sick ]
   reset-ticks
+  set infection-chance (100 - HCW-hand-washing-rate)
 end
 
 to create-some-patients
@@ -107,28 +77,42 @@ end
 to go
   ;; in order to extend the plot for a little while
   ;; after all the turtles are infected...
-  if ticks = 10000 [ stop ]
+
+  if ticks = 100 [ stop ]
   Move
-  ;spread-disease
+  spread-disease
 
   tick
-end
-
-to spread-disease
-  ask patients with [infected?]
-    [spread-disease]
-  ask HCWs with [infected?]
-    [spread-disease]
-  ask volunteers with [infected?]
-    [spread-disease]
-  set num-sick count turtles with [ infected? ]
 end
 
 to Move
   ask HCWs [setxy random-pxcor random-pycor]
   ask volunteers [setxy random-pxcor random-pycor]
+  wait 0.5
+end
+
+to spread-disease
+  ask patients with [infected?]
+    [ ask turtles in-radius 4
+      [
+        if (not infected?) and (random 100 < infection-chance)
+       [ get-sick ]
+      ]
+      ;[spread-disease-patients-to-HCWs]
+      ;ask volunteers in-radius 5
+      ;[spread-disease-patients]
+    ]
+  ;ask HCWs with [infected?]
+    ;[spread-disease-HCWs]
+  ;ask volunteers with [infected?]
+    ;[spread-disease-voluteers]
+  set num-sick count turtles with [ infected? ]
+end
+
+to spread-disease-patients
 
 end
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Help Functions ;;
@@ -144,10 +128,10 @@ to get-sick ;; turtle procedure
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-451
-17
-992
-559
+376
+40
+917
+582
 -1
 -1
 13.0
@@ -369,16 +353,23 @@ NIL
 NIL
 1
 
-MONITOR
-1053
-86
-1115
-131
+PLOT
+978
+68
+1178
+218
+Number Sick
 NIL
-num_sim
-17
-1
-11
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" "plot count num-sick"
 
 @#$#@#$#@
 ## WHAT IS IT?
