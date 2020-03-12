@@ -164,8 +164,7 @@ let sim_no 0 ; simulation =0 first one
   ;After running the Case Study 3 simulation code to find the mean reproduction number - the code was
   ;provided by the research paper's author
   ;24.0 hand-washing rate
-  if(hand-hygiene-level = 24.0)
-  [
+
   let run_0 12.216399999999998
   let run_1 11.805700000000003
   let run_2 11.945299999999998
@@ -174,28 +173,7 @@ let sim_no 0 ; simulation =0 first one
 
 ; the approximate r0 is 12 - from Case Study 3 of the research paper
   set approx_r0 ((run_0 + run_1 + run_2 + run_3 + run_4) / 5) ; approximate r0
-  ]
   show approx_r0 ; print r0 to console
-   if(hand-hygiene-level = 12.0)
-  [
-  set approx_r0 ( 16.731599999999982) ;HCW hygiene rate 0.23
-  ]
-  if(hand-hygiene-level = 52.0)
-  [
-  set approx_r0 0.0 ; perfect hand hygiene level
-  ]
-  if(hand-hygiene-level = 48.0)
-  [
-  set approx_r0 1.7695999999999972 ; HCW hygiene rate = 0.92
-  ]
-
-  let step (hand-hygiene-level - 12); gives the exact position between 12 and 52
-  set approx_r0 (16.7316 - (step * 0.41829)) ; approximated from reproduction number and
-                                             ; number of times washed hands per day
-
-  ; Now to colour the agents when the hand-hygiene-level increases
-  infection-reduce-colour
-
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
