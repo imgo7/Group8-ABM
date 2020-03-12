@@ -20,6 +20,7 @@ turtles-own
 ;; set up
 to setup
   clear-all
+  set-plot-background-color gray
 
   ;;
   setup-hospital
@@ -128,10 +129,10 @@ to get-sick ;; turtle procedure
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-451
-17
-992
-559
+376
+40
+917
+582
 -1
 -1
 13.0
@@ -180,7 +181,7 @@ HCW-hand-washing-rate
 HCW-hand-washing-rate
 0
 100
-25.0
+46.0
 1
 1
 %
@@ -300,7 +301,7 @@ initial-patient
 initial-patient
 0
 100
-80.0
+77.0
 1
 1
 NIL
@@ -315,7 +316,7 @@ initial-HCW
 initial-HCW
 0
 100
-15.0
+74.0
 1
 1
 NIL
@@ -352,6 +353,24 @@ NIL
 NIL
 NIL
 1
+
+PLOT
+978
+68
+1178
+218
+Number Sick
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" "plot num-sick"
 
 @#$#@#$#@
 ## WHAT IS IT?

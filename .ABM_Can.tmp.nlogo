@@ -21,6 +21,7 @@ turtles-own
 to setup
   clear-all
 
+
   ;;
   setup-hospital
 end
@@ -180,7 +181,7 @@ HCW-hand-washing-rate
 HCW-hand-washing-rate
 0
 100
-25.0
+46.0
 1
 1
 %
@@ -300,7 +301,7 @@ initial-patient
 initial-patient
 0
 100
-80.0
+77.0
 1
 1
 NIL
@@ -315,7 +316,7 @@ initial-HCW
 initial-HCW
 0
 100
-15.0
+74.0
 1
 1
 NIL
@@ -369,7 +370,7 @@ true
 false
 "" ""
 PENS
-"default" 1.0 0 -16777216 true "" "plot count num-sick"
+"default" 1.0 0 -16777216 true "" "plot num-sick"
 
 @#$#@#$#@
 ## WHAT IS IT?
