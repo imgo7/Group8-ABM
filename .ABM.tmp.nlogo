@@ -270,10 +270,10 @@ NIL
 0
 
 SLIDER
-10
-63
-182
-96
+8
+66
+180
+99
 hand-hygiene-level
 hand-hygiene-level
 12
@@ -320,10 +320,10 @@ OUTPUT
 11
 
 SWITCH
-9
-106
-215
-139
+3
+432
+209
+465
 increased-cleaning-regimen
 increased-cleaning-regimen
 1
