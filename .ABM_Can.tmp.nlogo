@@ -2,10 +2,20 @@ globals
 [
   ;; totoal number of infected people
   num-sick
+  num-sick-patients
+  num-sick-HCWs
+  num-sick-volunteers
   ;; counter used to keep the model running for a little while after the last turtle gets infected
   delay
   ;;
-  infection-chance
+  infection-chance-HCW-from-Patient
+  infection-chance-volunteers-from-Patient
+
+  ;;Patient-HCW transmission rate
+  betaPH
+  ;;Patient-Volunteer transmission rate
+  betaPV
+
 ]
 
 breed [patients patient]
@@ -20,10 +30,12 @@ turtles-own
 ;; set up
 to setup
   clear-all
-
+  ask patches [ set pcolor gray ]
 
   ;;
   setup-hospital
+  set betaPH 0.72
+  set betaPV 0.20
 end
 
 to setup-hospital
@@ -37,7 +49,6 @@ to setup-hospital
   create-some-Volunteers
   ask one-of patients [ get-sick ]
   reset-ticks
-  set infection-chance (100 - HCW-hand-washing-rate)
 end
 
 to create-some-patients
@@ -76,9 +87,6 @@ end
 ;;;;;;;;;;;;;;;;;;;;;;;
 
 to go
-  ;; in order to extend the plot for a little while
-  ;; after all the turtles are infected...
-
   if ticks = 100 [ stop ]
   Move
   spread-disease
@@ -93,25 +101,35 @@ to Move
 end
 
 to spread-disease
-  ask patients with [infected?]
-    [ ask turtles in-radius 4
-      [
-        if (not infected?) and (random 100 < infection-chance)
-       [ get-sick ]
-      ]
-      ;[spread-disease-patients-to-HCWs]
-      ;ask volunteers in-radius 5
-      ;[spread-disease-patients]
-    ]
-  ;ask HCWs with [infected?]
-    ;[spread-disease-HCWs]
-  ;ask volunteers with [infected?]
-    ;[spread-disease-voluteers]
+  spread-disease-patients-to-HCWs
+  spread-disease-patients-to-volunteers
   set num-sick count turtles with [ infected? ]
 end
 
-to spread-disease-patients
+to spread-disease-patients-to-HCWs
+  set num-sick-patients count patients with [ infected? ]
+  set num-sick-HCWs count HCWs with [ infected? ]
+  set infection-chance-HCW-from-Patient ((1 - HCW-hygiene-rate) / initial-patient * betaPH * num-sick-patients * (initial-HCW - num-sick-HCWs))
+  ask patients with [infected?]
+    [ ask HCWs in-radius 2
+      [
+        if (not infected?) and (random 1 < infection-chance-HCW-from-Patient)
+        [ get-sick ]
+      ]
+    ]
+end
 
+to spread-disease-patients-to-volunteers
+  set num-sick-patients count patients with [ infected? ]
+  set num-sick-volunteers count volunteers with [ infected? ]
+  set infection-chance-volunteers-from-Patient ((1 - HCW-hygiene-rate) / initial-patient * betaPV * num-sick-patients * (initial-volunteer - num-sick-volunteers))
+  ask patients with [infected?]
+    [ ask volunteers in-radius 2
+      [
+        if (not infected?) and (random 1 < infection-chance-volunteers-from-Patient)
+        [ get-sick ]
+      ]
+    ]
 end
 
 
@@ -181,7 +199,7 @@ HCW-hand-washing-rate
 HCW-hand-washing-rate
 0
 100
-46.0
+22.0
 1
 1
 %
@@ -211,7 +229,7 @@ HCW-hygiene-rate
 HCW-hygiene-rate
 0
 1
-0.46
+0.07
 0.01
 1
 NIL
@@ -226,7 +244,7 @@ Volunteer-hygiene-rate
 Volunteer-hygiene-rate
 0
 1
-0.23
+0.14
 0.01
 1
 NIL
