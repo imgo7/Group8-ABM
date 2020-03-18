@@ -10,11 +10,14 @@ globals
   ;;
   infection-chance-HCW-from-Patient
   infection-chance-volunteers-from-Patient
-
+  infection-chance-HCW-to-Patient
+  infection-chance-volunteers-to-Patient
   ;;Patient-HCW transmission rate
   betaPH
   ;;Patient-Volunteer transmission rate
   betaPV
+  ;;
+  total
 
 ]
 
@@ -42,8 +45,8 @@ to setup-hospital
   set-default-shape patients "person"
   set-default-shape HCWs "person"
   set-default-shape volunteers "person"
-  set num-sick 0;
-  set delay 0;
+  set num-sick 0
+  set total initial-patient + initial-HCW + initial-volunteer
   create-some-patients
   create-some-HCWs
   create-some-Volunteers
@@ -90,30 +93,44 @@ to go
   if ticks = 100 [ stop ]
   Move
   spread-disease
-
+  discharge-colonized-patients
   tick
 end
 
 to Move
   ask HCWs [setxy random-pxcor random-pycor]
   ask volunteers [setxy random-pxcor random-pycor]
-  wait 0.5
+  wait 0.3
 end
 
 to spread-disease
   spread-disease-patients-to-HCWs
   spread-disease-patients-to-volunteers
+  spread-disease-patients-from-HCWs
+  spread-disease-patients-from-volunteers
   set num-sick count turtles with [ infected? ]
+end
+
+to discharge-colonized-patients
+  ask patients with [infected?]
+    [
+      if random-float 1 < 0.077 ;; 1/13
+      [ discharge ]
+    ]
 end
 
 to spread-disease-patients-to-HCWs
   set num-sick-patients count patients with [ infected? ]
   set num-sick-HCWs count HCWs with [ infected? ]
-  set infection-chance-HCW-from-Patient ((1 - HCW-hygiene-rate) / initial-patient * betaPH * num-sick-patients * (initial-HCW - num-sick-HCWs))
+  set infection-chance-HCW-from-Patient ((1 - HCW-hand-hygiene-rate) / initial-patient * betaPH * num-sick-patients * (initial-HCW - num-sick-HCWs))
+  if infection-chance-HCW-from-Patient > 10
+    [set infection-chance-HCW-from-Patient infection-chance-HCW-from-Patient / 100]
+  if infection-chance-HCW-from-Patient > 1
+    [set infection-chance-HCW-from-Patient infection-chance-HCW-from-Patient / 10]
   ask patients with [infected?]
     [ ask HCWs in-radius 2
       [
-        if (not infected?) and (random 1 < infection-chance-HCW-from-Patient)
+        if (not infected?) and (random-float 1 < infection-chance-HCW-from-Patient)
         [ get-sick ]
       ]
     ]
@@ -122,11 +139,49 @@ end
 to spread-disease-patients-to-volunteers
   set num-sick-patients count patients with [ infected? ]
   set num-sick-volunteers count volunteers with [ infected? ]
-  set infection-chance-volunteers-from-Patient ((1 - HCW-hygiene-rate) / initial-patient * betaPV * num-sick-patients * (initial-volunteer - num-sick-volunteers))
+  set infection-chance-volunteers-from-Patient ((1 - Volunteer-hand-hygiene-rate) / initial-patient * betaPV * num-sick-patients * (initial-volunteer - num-sick-volunteers))
+  if infection-chance-volunteers-from-Patient > 10
+    [set infection-chance-volunteers-from-Patient infection-chance-volunteers-from-Patient / 100]
+  if infection-chance-volunteers-from-Patient > 1
+    [set infection-chance-volunteers-from-Patient infection-chance-volunteers-from-Patient / 10]
   ask patients with [infected?]
     [ ask volunteers in-radius 2
       [
-        if (not infected?) and (random 1 < infection-chance-volunteers-from-Patient)
+        if (not infected?) and (random-float 1 < infection-chance-volunteers-from-Patient)
+        [ get-sick ]
+      ]
+    ]
+end
+
+to spread-disease-patients-from-HCWs
+  set num-sick-patients count patients with [ infected? ]
+  set num-sick-HCWs count HCWs with [ infected? ]
+  set infection-chance-HCW-to-Patient ((1 - HCW-hand-hygiene-rate) / initial-patient * betaPH * num-sick-HCWs * (initial-patient - num-sick-patients))
+  if infection-chance-HCW-to-Patient > 10
+    [set infection-chance-HCW-to-Patient infection-chance-HCW-to-Patient / 100]
+  if infection-chance-HCW-to-Patient > 1
+    [set infection-chance-HCW-to-Patient infection-chance-HCW-to-Patient / 10]
+  ask HCWs with [infected?]
+    [ ask patients in-radius 2
+      [
+        if (not infected?) and (random-float 1 < infection-chance-HCW-to-Patient)
+        [ get-sick ]
+      ]
+    ]
+end
+
+to spread-disease-patients-from-volunteers
+  set num-sick-patients count patients with [ infected? ]
+  set num-sick-volunteers count volunteers with [ infected? ]
+  set infection-chance-volunteers-to-Patient ((1 - Volunteer-hand-hygiene-rate) / initial-patient * betaPV * num-sick-volunteers * (initial-patient - num-sick-patients))
+  if infection-chance-volunteers-to-Patient > 10
+    [set infection-chance-volunteers-to-Patient infection-chance-volunteers-to-Patient / 100]
+  if infection-chance-volunteers-to-Patient > 1
+    [set infection-chance-volunteers-to-Patient infection-chance-volunteers-to-Patient / 10]
+  ask volunteers with [infected?]
+    [ ask patients in-radius 2
+      [
+        if (not infected?) and (random-float 1 < infection-chance-volunteers-to-Patient)
         [ get-sick ]
       ]
     ]
@@ -142,15 +197,21 @@ to get-sick ;; turtle procedure
   if not infected? [
     set infected? true
     set shape word shape " sick"
-    set num-sick num-sick + 1
+  ]
+end
+
+to discharge
+  if infected? [
+    set infected? false
+    set shape "person"
   ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-376
-40
-917
-582
+348
+45
+889
+587
 -1
 -1
 13.0
@@ -174,10 +235,10 @@ ticks
 30.0
 
 BUTTON
-4
-17
-70
-50
+0
+10
+242
+43
 NIL
 setup
 NIL
@@ -192,59 +253,14 @@ NIL
 
 SLIDER
 0
-178
-209
-211
-HCW-hand-washing-rate
-HCW-hand-washing-rate
-0
-100
-22.0
-1
-1
-%
-HORIZONTAL
-
-SLIDER
-0
-285
-257
-318
-Volunteers-hand-washing-rate
-Volunteers-hand-washing-rate
-0
-100
-12.0
-1
-1
-%
-HORIZONTAL
-
-SLIDER
-0
-221
-172
-254
-HCW-hygiene-rate
-HCW-hygiene-rate
+322
+243
+355
+Volunteer-hand-hygiene-rate
+Volunteer-hand-hygiene-rate
 0
 1
-0.07
-0.01
-1
-NIL
-HORIZONTAL
-
-SLIDER
-0
-331
-202
-364
-Volunteer-hygiene-rate
-Volunteer-hygiene-rate
-0
-1
-0.14
+0.24
 0.01
 1
 NIL
@@ -252,69 +268,49 @@ HORIZONTAL
 
 TEXTBOX
 0
-426
-150
-465
-Probability of admitted patient being colonized:\nphi=0.165
-12
-0.0
-1
-
-TEXTBOX
-0
-477
-150
-516
-Discharge rate of non-colonized patients:\ndeltaU=1.0/7.0
-12
-0.0
-1
-
-TEXTBOX
-158
-477
-308
-516
+438
+332
+483
 Discharge rate of colonized patients:\ndeltaC=1.0/13.0
-12
+15
 0.0
 1
 
 TEXTBOX
 0
-530
-150
-569
+560
+255
+607
 Patient-HCW transmission rate:\nbetaPH = 0.72
-12
-0.0
-1
-
-TEXTBOX
-159
-532
-309
-571
-Patient-Volunteer transmission rate:\nbetaPV = 0.20
-12
+15
 0.0
 1
 
 TEXTBOX
 0
-401
+500
+301
+543
+Patient-Volunteer transmission rate:\nbetaPV = 0.20
+15
+0.0
+1
+
+TEXTBOX
+0
+376
 150
-419
+432
 Keys:
-16
+20
 0.0
 1
 
 SLIDER
 0
-66
-172
-99
+118
+242
+151
 initial-patient
 initial-patient
 0
@@ -327,39 +323,39 @@ HORIZONTAL
 
 SLIDER
 0
-109
-172
-142
+161
+242
+194
 initial-HCW
 initial-HCW
 0
 100
-74.0
+86.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-187
-109
-359
-142
+0
+205
+241
+238
 initial-volunteer
 initial-volunteer
 0
-100
-2.0
+50
+6.0
 1
 1
 NIL
 HORIZONTAL
 
 BUTTON
-91
-17
-154
-50
+0
+52
+243
+85
 NIL
 go
 T
@@ -370,25 +366,63 @@ NIL
 NIL
 NIL
 NIL
-1
+0
 
 PLOT
-978
-68
-1178
-218
+956
+177
+1377
+585
 Number Sick
-NIL
-NIL
+Day
+Number of Sick People
 0.0
-10.0
+100.0
 0.0
-10.0
-true
+200.0
 false
-"" ""
+true
+"set-plot-y-range 0 total" ""
 PENS
-"default" 1.0 0 -16777216 true "" "plot num-sick"
+"Total" 1.0 0 -16777216 true "" "plot num-sick"
+"Patients" 1.0 0 -1184463 true "" "plot num-sick-patients"
+"HCWs" 1.0 0 -13345367 true "" "plot num-sick-HCWs"
+"Volunteer" 1.0 0 -13840069 true "" "plot num-sick-Volunteers"
+
+SLIDER
+0
+279
+243
+312
+HCW-hand-hygiene-rate
+HCW-hand-hygiene-rate
+0
+1
+0.24
+0.01
+1
+NIL
+HORIZONTAL
+
+TEXTBOX
+960
+15
+1112
+59
+Legend:
+20
+0.0
+1
+
+TEXTBOX
+957
+76
+1221
+164
+Yellow -- Patients\nBlue -- HCWs\nGreen -- Volunteers\nWith Red Circle -- Infected
+15
+0.0
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
