@@ -91,7 +91,7 @@ to go
   if ticks = 100 [ stop ]
   Move
   spread-disease
-
+  discharge-colonized
   tick
 end
 
@@ -107,6 +107,14 @@ to spread-disease
   spread-disease-patients-from-HCWs
   spread-disease-patients-from-volunteers
   set num-sick count turtles with [ infected? ]
+end
+
+to discharge-colonized
+  ask turtles with [infected?]
+    [
+      if random-float 1 < 0.077 ;; 1/13
+      [ discharge ]
+    ]
 end
 
 to spread-disease-patients-to-HCWs
@@ -187,7 +195,13 @@ to get-sick ;; turtle procedure
   if not infected? [
     set infected? true
     set shape word shape " sick"
-    set num-sick num-sick + 1
+  ]
+end
+
+to discharge
+  if infected? [
+    set infected? false
+    set shape ""
   ]
 end
 @#$#@#$#@
@@ -244,7 +258,7 @@ HCW-hand-washing-rate
 HCW-hand-washing-rate
 0
 100
-22.0
+9.0
 1
 1
 %
@@ -274,7 +288,7 @@ HCW-hygiene-rate
 HCW-hygiene-rate
 0
 1
-0.22
+0.94
 0.01
 1
 NIL
@@ -289,7 +303,7 @@ Volunteer-hygiene-rate
 Volunteer-hygiene-rate
 0
 1
-0.13
+0.95
 0.01
 1
 NIL
@@ -379,7 +393,7 @@ initial-HCW
 initial-HCW
 0
 100
-14.0
+86.0
 1
 1
 NIL
@@ -434,17 +448,6 @@ false
 "" ""
 PENS
 "default" 1.0 0 -16777216 true "" "plot num-sick"
-
-MONITOR
-1081
-321
-1150
-366
-NIL
-random 1
-17
-1
-11
 
 @#$#@#$#@
 ## WHAT IS IT?

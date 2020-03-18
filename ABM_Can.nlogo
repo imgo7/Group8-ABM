@@ -91,7 +91,7 @@ to go
   if ticks = 100 [ stop ]
   Move
   spread-disease
-
+  discharge-colonized
   tick
 end
 
@@ -107,6 +107,14 @@ to spread-disease
   spread-disease-patients-from-HCWs
   spread-disease-patients-from-volunteers
   set num-sick count turtles with [ infected? ]
+end
+
+to discharge-colonized
+  ask turtles with [infected?]
+    [
+      if random-float 1 < 0.077 ;; 1/13
+      [ discharge ]
+    ]
 end
 
 to spread-disease-patients-to-HCWs
@@ -187,7 +195,13 @@ to get-sick ;; turtle procedure
   if not infected? [
     set infected? true
     set shape word shape " sick"
-    set num-sick num-sick + 1
+  ]
+end
+
+to discharge
+  if infected? [
+    set infected? false
+    set shape "person"
   ]
 end
 @#$#@#$#@
