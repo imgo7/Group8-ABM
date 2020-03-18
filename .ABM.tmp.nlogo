@@ -190,8 +190,8 @@ let sim_no 0 ; simulation =0 first one
   set infected_patients 1
   set infected_HCWs 1
 
-  ;After running the Section 3-Case Study 2 (Wang et al. model) simulation code to find the mean reproduction number
-  ;- the code wasprovided by the research paper's author
+  ;After running the Case Study 2 (Wang et al simulation code to find the mean reproduction number - the code was
+  ;provided by the research paper's author
   ;24.0 hand-washing rate
   if(hand-hygiene-level = 24.0)
   [
