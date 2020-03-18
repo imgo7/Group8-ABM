@@ -16,6 +16,8 @@ globals
   betaPH
   ;;Patient-Volunteer transmission rate
   betaPV
+  ;;
+  total
 
 ]
 
@@ -43,8 +45,8 @@ to setup-hospital
   set-default-shape patients "person"
   set-default-shape HCWs "person"
   set-default-shape volunteers "person"
-  set num-sick 0;
-  set delay 0;
+  set num-sick 0
+  set total initial-patient + initial-HCWs + initial-volunteers
   create-some-patients
   create-some-HCWs
   create-some-Volunteers
@@ -91,7 +93,7 @@ to go
   if ticks = 100 [ stop ]
   Move
   spread-disease
-  discharge-colonized
+  discharge-colonized-patients
   tick
 end
 
@@ -109,8 +111,8 @@ to spread-disease
   set num-sick count turtles with [ infected? ]
 end
 
-to discharge-colonized
-  ask turtles with [infected?]
+to discharge-colonized-patients
+  ask patients with [infected?]
     [
       if random-float 1 < 0.077 ;; 1/13
       [ discharge ]
@@ -288,7 +290,7 @@ HCW-hygiene-rate
 HCW-hygiene-rate
 0
 1
-0.94
+0.0
 0.01
 1
 NIL
@@ -303,7 +305,7 @@ Volunteer-hygiene-rate
 Volunteer-hygiene-rate
 0
 1
-0.95
+0.0
 0.01
 1
 NIL
@@ -407,7 +409,7 @@ SLIDER
 initial-volunteer
 initial-volunteer
 0
-100
+50
 6.0
 1
 1
@@ -434,20 +436,23 @@ NIL
 PLOT
 978
 68
-1178
-218
+1323
+326
 Number Sick
-NIL
-NIL
+Day
+Number of Sick People
 0.0
-10.0
+100.0
 0.0
-10.0
-true
+200.0
 false
+true
 "" ""
 PENS
-"default" 1.0 0 -16777216 true "" "plot num-sick"
+"Total" 1.0 0 -16777216 true "" "plot num-sick"
+"Patients" 1.0 0 -1184463 true "" "plot num-sick-patients"
+"HCWs" 1.0 0 -13345367 true "" "plot num-sick-HCWs"
+"Volunteer" 1.0 0 -13840069 true "" "plot num-sick-Volunteers"
 
 @#$#@#$#@
 ## WHAT IS IT?
