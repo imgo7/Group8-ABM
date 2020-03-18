@@ -54,13 +54,13 @@ to setup-hospital
     set color white ; for now white can indicate an uninfected turtle
   ]
    ; infection procedure - start of infection
-    ask turtle 1 ; hospital begins with 1 infected patient (turtle id 1)
+  ask turtle 15 ; hospital begins with 1 infected agent (turtle )
     [
       set infected? true
       assign-turtle-color ; assign each agent's colour
     ]
 
-    ask turtle 2 ; ask turtle id 2 to be 1 infected HCW
+  ask turtle 16 ; ask turtle with turtle id 2 to be the second infected individual
     [
       set infected? true
       assign-turtle-color ; assign each agent's colour
@@ -144,13 +144,37 @@ to infection-reduce-colour
         set infected? false ; not infected as increased hand hygiene decreases number of infected people
         set color white ; not infected colour = white
       ]
-      set counter_2 counter_2 + 1 ; counter increases by one person each time, increment
+      set counter_2 (counter_2 + 1) ; counter increases by one person each time, increment
     ]
   ]
 end
 
 ; procedure to reduce the number of infected agents if increased cleaning regimen (switch is on)
+; based on results from the research paper ("Measuring the effects of enhanced cleaning in a UK hospital:
+; a prospective cross-over study")
 to infection-reduce-r0-cleaning-regimen
+
+  ; reduce current r0 by 32.5%
+  set approx_r0 (approx_r0 * 0.675) ;reduced r0 is 67.5% of original r0 (as reduced by 32.5%)
+
+  ;reduce number of coloured infected agents by 32.5%
+
+  let infectedPeople count turtles with [infected?] ; count all the agents which are infected
+  let noLongerInfected (infectedPeople * 0.325) ; 32.5% of agents are no longer infected due to increased cleaning regimen
+  let counter_3 0 ; used to count number of infected people becoming uninfected
+  ask turtles with [infected?] ; select all infected turtles only
+  [
+    if (counter_3 != noLongerInfected) ; whilst the number of uninfected patients is not equal to count
+    [
+      ask one-of turtles with [infected?] ; ask one of the infected people
+      [
+        set infected? false ; not infected as increased cleaning regimen reduced number of infected people
+        set color white ; not infected colour = white
+      ]
+      set counter_3 (counter_3 + 1) ; counter increases by one person each time, increment
+    ]
+
+  ]
 
 end
 
@@ -200,11 +224,21 @@ let sim_no 0 ; simulation =0 first one
 
   ; Now to colour the agents when the hand-hygiene-level increases
   infection-reduce-colour
+
   ;if cleaning regimen is switched on there is a 32.5% reduction in the spread of infection
   ; based on results from the research paper ("Measuring the effects of enhanced cleaning in a UK hospital:
   ; a prospective cross-over study")
   ; reduction in number of agents infected and reduced R0
-  infection-reduce-r0-cleaning-regimen
+
+  ; only call the following method if the switch is on - increased cleaning regimen
+   ifelse increased-cleaning-regimen? ; checks value of switch
+  [
+  ;show "switch is on" ; to test that user pressed switch
+  infection-reduce-r0-cleaning-regimen ; if true- switched on
+  ]
+  [
+     ; if switched nothing changes
+  ]
 
 end
 @#$#@#$#@
@@ -278,7 +312,7 @@ hand-hygiene-level
 hand-hygiene-level
 12
 52
-30.0
+13.0
 1
 1
 NIL
@@ -322,10 +356,10 @@ OUTPUT
 SWITCH
 9
 106
-215
+221
 139
-increased-cleaning-regimen
-increased-cleaning-regimen
+increased-cleaning-regimen?
+increased-cleaning-regimen?
 1
 1
 -1000
