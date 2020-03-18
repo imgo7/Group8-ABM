@@ -10,8 +10,8 @@ globals
   ;;
   infection-chance-HCW-from-Patient
   infection-chance-volunteers-from-Patient
-  infection-chance-Patient-from-HCW
-  infection-chance-Patient-from-volunteers
+  infection-chance-HCW-to-Patient
+  infection-chance-volunteers-to-Patient
   ;;Patient-HCW transmission rate
   betaPH
   ;;Patient-Volunteer transmission rate
@@ -113,10 +113,14 @@ to spread-disease-patients-to-HCWs
   set num-sick-patients count patients with [ infected? ]
   set num-sick-HCWs count HCWs with [ infected? ]
   set infection-chance-HCW-from-Patient ((1 - HCW-hygiene-rate) / initial-patient * betaPH * num-sick-patients * (initial-HCW - num-sick-HCWs))
+  if infection-chance-HCW-from-Patient > 10
+    [set infection-chance-HCW-from-Patient infection-chance-HCW-from-Patient / 100]
+  if infection-chance-HCW-from-Patient > 1
+    [set infection-chance-HCW-from-Patient infection-chance-HCW-from-Patient / 10]
   ask patients with [infected?]
     [ ask HCWs in-radius 2
       [
-        if (not infected?) and (random 1 < infection-chance-HCW-from-Patient)
+        if (not infected?) and (random-float 1 < infection-chance-HCW-from-Patient)
         [ get-sick ]
       ]
     ]
@@ -125,11 +129,49 @@ end
 to spread-disease-patients-to-volunteers
   set num-sick-patients count patients with [ infected? ]
   set num-sick-volunteers count volunteers with [ infected? ]
-  set infection-chance-volunteers-from-Patient ((1 - HCW-hygiene-rate) / initial-patient * betaPV * num-sick-patients * (initial-volunteer - num-sick-volunteers))
+  set infection-chance-volunteers-from-Patient ((1 - Volunteer-hygiene-rate) / initial-patient * betaPV * num-sick-patients * (initial-volunteer - num-sick-volunteers))
+  if infection-chance-volunteers-from-Patient > 10
+    [set infection-chance-volunteers-from-Patient infection-chance-volunteers-from-Patient / 100]
+  if infection-chance-volunteers-from-Patient > 1
+    [set infection-chance-volunteers-from-Patient infection-chance-volunteers-from-Patient / 10]
   ask patients with [infected?]
     [ ask volunteers in-radius 2
       [
-        if (not infected?) and (random 1 < infection-chance-volunteers-from-Patient)
+        if (not infected?) and (random-float 1 < infection-chance-volunteers-from-Patient)
+        [ get-sick ]
+      ]
+    ]
+end
+
+to spread-disease-patients-from-HCWs
+  set num-sick-patients count patients with [ infected? ]
+  set num-sick-HCWs count HCWs with [ infected? ]
+  set infection-chance-HCW-to-Patient ((1 - HCW-hygiene-rate) / initial-patient * betaPH * num-sick-HCWs * (initial-patient - num-sick-patients))
+  if infection-chance-HCW-to-Patient > 10
+    [set infection-chance-HCW-to-Patient infection-chance-HCW-to-Patient / 100]
+  if infection-chance-HCW-to-Patient > 1
+    [set infection-chance-HCW-to-Patient infection-chance-HCW-to-Patient / 10]
+  ask HCWs with [infected?]
+    [ ask patients in-radius 2
+      [
+        if (not infected?) and (random-float 1 < infection-chance-HCW-to-Patient)
+        [ get-sick ]
+      ]
+    ]
+end
+
+to spread-disease-patients-from-volunteers
+  set num-sick-patients count patients with [ infected? ]
+  set num-sick-volunteers count volunteers with [ infected? ]
+  set infection-chance-volunteers-to-Patient ((1 - Volunteer-hygiene-rate) / initial-patient * betaPV * num-sick-volunteers * (initial-patient - num-sick-patients))
+  if infection-chance-volunteers-to-Patient > 10
+    [set infection-chance-volunteers-to-Patient infection-chance-volunteers-to-Patient / 100]
+  if infection-chance-volunteers-to-Patient > 1
+    [set infection-chance-volunteers-to-Patient infection-chance-volunteers-to-Patient / 10]
+  ask volunteers with [infected?]
+    [ ask patients in-radius 2
+      [
+        if (not infected?) and (random-float 1 < infection-chance-volunteers-to-Patient)
         [ get-sick ]
       ]
     ]
@@ -202,7 +244,7 @@ HCW-hand-washing-rate
 HCW-hand-washing-rate
 0
 100
-22.0
+9.0
 1
 1
 %
@@ -232,7 +274,7 @@ HCW-hygiene-rate
 HCW-hygiene-rate
 0
 1
-0.07
+0.94
 0.01
 1
 NIL
@@ -247,7 +289,7 @@ Volunteer-hygiene-rate
 Volunteer-hygiene-rate
 0
 1
-0.14
+0.95
 0.01
 1
 NIL
@@ -337,7 +379,7 @@ initial-HCW
 initial-HCW
 0
 100
-74.0
+86.0
 1
 1
 NIL
@@ -352,7 +394,7 @@ initial-volunteer
 initial-volunteer
 0
 100
-2.0
+6.0
 1
 1
 NIL
