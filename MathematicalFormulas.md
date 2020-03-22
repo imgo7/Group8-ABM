@@ -12,7 +12,7 @@ To begin with the sample Python code was run, which contains the results of 10,0
 I proceeded to vary the hygienic rate to 0.23 and hand hygiene level of 12.0, reran the sample code and recorded the resulting R0. I repeated this procedure with a hygienic rate of 0.92 and hand hygiene level of 12.0. The optimal hand hygiene level for this model is 52.0 and a hygiene rate of 1 which produces an R0 of 0.0 (based on the sample code). <br>
 
 
-### Effect of Variables - Can
+### Mathematical Formulas &&  Usage of probability - Can
 | Abbreviation | Description |
 | :---: | :---: | 
 | betaPH | Patient-HCW transmission rate |
