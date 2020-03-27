@@ -312,7 +312,7 @@ hand-hygiene-level
 hand-hygiene-level
 12
 52
-12.0
+13.0
 1
 1
 NIL
@@ -379,19 +379,11 @@ increased-cleaning-regimen?
 
 ## THINGS TO NOTICE
 
-Notice how the handwash rate affects the spread of the infection in a simple simulation of a hospital.
-
-Notice that the exact rate of spread caused by the patients to HCWs is shown below the graph.
-
-Notice that if you change the hand hygiene level, the agents become uninfected and another simulation begins of a hospital being infected.
-
-Notice that with a very low hand hygiene level, an outbreak occurs far more often.
+(suggested things for the user to notice while running the model)
 
 ## THINGS TO TRY
 
-Try changing the handwash rate.
-
-See what the effect of increasing the cleaning regimen is on the spread.
+(suggested things for the user to try to do (move sliders, switches, etc.) with the model)
 
 ## EXTENDING THE MODEL
 
@@ -399,7 +391,7 @@ See what the effect of increasing the cleaning regimen is on the spread.
 
 ## NETLOGO FEATURES
 
-Proximity of turtles to each other influences the simulation
+(interesting or unusual features of NetLogo that the model uses, particularly in the Code tab; or where workarounds were needed for missing features)
 
 ## RELATED MODELS
 
