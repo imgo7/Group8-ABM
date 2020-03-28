@@ -411,19 +411,22 @@ See what the effect of increasing the cleaning regimen is on the spread.
 
 ## EXTENDING THE MODEL
 
-(suggested things to add or change in the Code tab to make the model more complicated, detailed, accurate, etc.)
-
 ## NETLOGO FEATURES
 
 Proximity of turtles to each other influences the simulation
 
 ## RELATED MODELS
 
-(models in the NetLogo Models Library and elsewhere which are of related interest)
 
 ## CREDITS AND REFERENCES
 
-(a reference to the model's URL on the web if it has one, as well as any other necessary credits, citations, and links)
+Martín López-García andTheodore Kypraios.2018 A unified stochastic modelling framework for the spread of nosocomial infectionsJ. R. Soc. Interface.1520180060. http://doi.org/10.1098/rsif.2018.0060 <br>
+
+Wang J, Wang L, Magal P, Wang Y, Zhuo J, Lu X, Ruan S. 2011Modelling the transmission dynamics of meticillin-resistant Staphylococcus aureus in Beijing Tongren hospital. J. Hosp. Infect. 79, 302–308. (doi:10.1016/j.jhin.2011.08.019) Crossref, PubMed, Google Scholar<br>
+
+Dancer, S.J., White, L.F., Lamb, J. et al. Measuring the effect of enhanced cleaning in a UK hospital: a prospective cross-over study. BMC Med 7, 28 (2009). https://doi.org/10.1186/1741-7015-7-28<br>
+
+
 @#$#@#$#@
 default
 true

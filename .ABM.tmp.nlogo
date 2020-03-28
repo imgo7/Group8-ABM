@@ -367,7 +367,7 @@ increased-cleaning-regimen?
 @#$#@#$#@
 ## WHAT IS IT?
 
-The agent-based model shows the spread of infection in a hospital ward that consists of 23 people; 14 Healthcare Workers (HCWs), 7 patients and 2 Volunteers, the figures based upon the paper: Case Study 3.2 in the research paper: López-García, Martín and Kypraios,Theodore 2018, 'A unified stochastic modelling framework for the spread of nosocomial infections', Journal of the Royal Society Interface, vol. 15, no. 143, http://doi.org/10.1098/rsif.2018.0060. The model explored in depth in this section is from the paper: Wang J, Wang L, Magal P, Wang Y, Zhuo J, Lu X, Ruan S. 2011, 'Modelling the transmission dynamics of meticillin-resistant Staphylococcus aureus in Beijing Tongren hospital.' The Journal Of Hospital Infection vol.79, issue no. 4 ((doi:10.1016/j.jhin.2011.08.019. The reproduction number used for the model is the patient among HCWs . A further Python code sample was provided courtesy of the paper's author, Dr. López-García. 
+The agent-based model shows the spread of infection in a hospital ward that consists of 23 people; 14 Healthcare Workers (HCWs), 7 patients and 2 Volunteers, the figures based upon the paper: Case Study 3.2 in the research paper: López-García, Martín and Kypraios,Theodore 2018, 'A unified stochastic modelling framework for the spread of nosocomial infections', Journal of the Royal Society Interface, vol. 15, no. 143, http://doi.org/10.1098/rsif.2018.0060. The model explored in depth in this section is from the paper: Wang J, Wang L, Magal P, Wang Y, Zhuo J, Lu X, Ruan S. 2011, 'Modelling the transmission dynamics of meticillin-resistant Staphylococcus aureus in Beijing Tongren hospital.' The Journal Of Hospital Infection vol.79, issue no. 4 (doi:10.1016/j.jhin.2011.08.019). The reproduction number used for the model is the patient among HCWs . A further Python code sample was provided courtesy of the paper's author, Dr. López-García. 
 
 ## HOW IT WORKS
 
@@ -395,11 +395,19 @@ To use to model: <br>
 
 ## THINGS TO NOTICE
 
-(suggested things for the user to notice while running the model)
+Notice how the handwash rate affects the spread of the infection in a simple simulation of a hospital.
+
+Notice that the exact rate of spread caused by the patients to HCWs is shown below the graph.
+
+Notice that if you change the hand hygiene level, the agents become uninfected and another simulation begins of a hospital being infected.
+
+Notice that with a very low hand hygiene level, an outbreak occurs far more often.
 
 ## THINGS TO TRY
 
-(suggested things for the user to try to do (move sliders, switches, etc.) with the model)
+Try changing the handwash rate.
+
+See what the effect of increasing the cleaning regimen is on the spread.
 
 ## EXTENDING THE MODEL
 
@@ -407,7 +415,7 @@ To use to model: <br>
 
 ## NETLOGO FEATURES
 
-(interesting or unusual features of NetLogo that the model uses, particularly in the Code tab; or where workarounds were needed for missing features)
+Proximity of turtles to each other influences the simulation
 
 ## RELATED MODELS
 
@@ -415,7 +423,7 @@ To use to model: <br>
 
 ## CREDITS AND REFERENCES
 
-(a reference to the model's URL on the web if it has one, as well as any other necessary credits, citations, and links)
+Martín López-García andTheodore Kypraios.2018 A unified stochastic modelling framework for the spread of nosocomial infectionsJ. R. Soc. Interface.1520180060. http://doi.org/10.1098/rsif.2018.0060 <br
 @#$#@#$#@
 default
 true
