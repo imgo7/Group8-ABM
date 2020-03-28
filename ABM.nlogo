@@ -312,7 +312,7 @@ hand-hygiene-level
 hand-hygiene-level
 12
 52
-13.0
+38.0
 1
 1
 NIL
@@ -360,7 +360,7 @@ SWITCH
 139
 increased-cleaning-regimen?
 increased-cleaning-regimen?
-1
+0
 1
 -1000
 
@@ -371,12 +371,12 @@ The agent-based model shows the spread of infection in a hospital ward that cons
 
 ## HOW IT WORKS
 
-The approximate reproduction number of a patient among HCWs is calculated, to demonstrate the spread of infection within the hospital ward. To begin with the sample code was run to calculate an estimated R0. When run, the output delivers the approximate R0 of a Patient amongst Healthcare Workers (HCWs). The output was recorded five times,was added and then divided by five to provide an approximate R0. This R0 occurs when the handwashing rate (hand-hygiene-level slider in Netlogo) is set to 24.0.<br> 
+The approximate reproduction number of a patient among HCWs is calculated, to demonstrate the spread of infection within the hospital ward. To begin with the sample code was run to calculate an estimated R0. When run, the output delivers the approximate R0 of a Patient amongst Healthcare Workers (HCWs). The output was recorded five times,was added and then divided by five to provide an approximate R0. This R0 occurs when the handwashing rate (hand-hygiene-level slider in Netlogo) is set to 24.0.
 
-In order to calculate the R0 so that it would change once the hand hygiene level is applied. The hand hygiene level was measured on a scale of 12 to 52. The approximate reproduction number, approx_r0.In order to calculate the approximate reproduction number , taking into account the hand hygiene level, the formula is: 16.7316 – (step)(0.41829).<br>
+In order to calculate the R0 so that it would change once the hand hygiene level is applied. The hand hygiene level was measured on a scale of 12 to 52. The approximate reproduction number, approx_r0.In order to calculate the approximate reproduction number , taking into account the hand hygiene level, the formula is: 16.7316 – (step)(0.41829).
 
 The cleaning regimen variable’s foundations are concluded from the paper, Dancer, S.J., White, L.F., Lamb, J. et al. Measuring the effect of enhanced cleaning in a UK hospital: a prospective cross-over study. BMC Med 7, 28 (2009). https://doi.org/10.1186/1741-7015-7-28. The paper states that an improved cleaning regimen results in a 32.5% decrease in levels of 
-contamination. In this model I applied this to mean 32.5% less infected agents as a result of an increased cleaning regimen.<br>
+contamination. In this model I applied this to mean 32.5% less infected agents as a result of an increased cleaning regimen.
 
 For additional information about the mathematical formulas behind the main model, consult our GitHub Repository, and read MathematicalFormulas.md for a detailed explanation behind the formulas applied in the main model.
 
@@ -385,12 +385,12 @@ For additional information about the mathematical formulas behind the main model
 
 
 ## HOW TO USE IT
-To use to model: <br>
-1.	Click the setup button and all the people will be set up, with the white agents marked as uninfected and red agents as infected (as according to the legend).<br>
-2.	Click on the go button to run the model.<br>
-3.	Increase or decrease the level of hand hygiene present in the hospital ward by augmenting the slider named “hand-hygiene-level”.<br>
-4.	Switch on the switch called “increased-cleaning-regimen’ to view what an amelioration of the level of cleaning present in the hospital ward does to the spread of infection. <br>
-5.	The graph displays how the reproduction number is impacted by the hand hygiene level and cleaning regimen. The reproduction number is also displayed underneath the graph so the user is able to view the approximate reproduction number produced as a result.<br>
+To use to model: 
+1.	Click the setup button and all the people will be set up, with the white agents marked as uninfected and red agents as infected (as according to the legend).
+2.	Click on the go button to run the model.
+3.	Increase or decrease the level of hand hygiene present in the hospital ward by augmenting the slider named “hand-hygiene-level”.
+4.	Switch on the switch called “increased-cleaning-regimen’ to view what an amelioration of the level of cleaning present in the hospital ward does to the spread of infection. 
+5.	The graph displays how the reproduction number is impacted by the hand hygiene level and cleaning regimen. The reproduction number is also displayed underneath the graph so the user is able to view the approximate reproduction number produced as a result.
 
 
 ## THINGS TO NOTICE
@@ -420,11 +420,11 @@ Proximity of turtles to each other influences the simulation
 
 ## CREDITS AND REFERENCES
 
-Martín López-García andTheodore Kypraios.2018 A unified stochastic modelling framework for the spread of nosocomial infectionsJ. R. Soc. Interface.1520180060. http://doi.org/10.1098/rsif.2018.0060 <br>
+Martín López-García andTheodore Kypraios.2018 A unified stochastic modelling framework for the spread of nosocomial infectionsJ. R. Soc. Interface.1520180060. http://doi.org/10.1098/rsif.2018.0060 
 
-Wang J, Wang L, Magal P, Wang Y, Zhuo J, Lu X, Ruan S. 2011Modelling the transmission dynamics of meticillin-resistant Staphylococcus aureus in Beijing Tongren hospital. J. Hosp. Infect. 79, 302–308. (doi:10.1016/j.jhin.2011.08.019) Crossref, PubMed, Google Scholar<br>
+Wang J, Wang L, Magal P, Wang Y, Zhuo J, Lu X, Ruan S. 2011Modelling the transmission dynamics of meticillin-resistant Staphylococcus aureus in Beijing Tongren hospital. J. Hosp. Infect. 79, 302–308. (doi:10.1016/j.jhin.2011.08.019) Crossref, PubMed, Google Scholar
 
-Dancer, S.J., White, L.F., Lamb, J. et al. Measuring the effect of enhanced cleaning in a UK hospital: a prospective cross-over study. BMC Med 7, 28 (2009). https://doi.org/10.1186/1741-7015-7-28<br>
+Dancer, S.J., White, L.F., Lamb, J. et al. Measuring the effect of enhanced cleaning in a UK hospital: a prospective cross-over study. BMC Med 7, 28 (2009). https://doi.org/10.1186/1741-7015-7-28
 
 
 @#$#@#$#@
