@@ -34,6 +34,3 @@ contamination. In this model I applied this to mean 32.5% less infected agents a
 | patient by Volunteer | ( 1 - xi ) /total_patients * betaPV * contaminated_Volunteers * ( total_patients - colonized_patients ) |
 | HCW by Patient | ( 1 - eta ) / total_patients * betaPH * colonized_patients * ( total_HCWs - contaminated_HCWs ) |
 | Volunteer by Patient | ( 1 - xi ) / total_patients * betaPV * colonized_patients * ( total_volunteers - contaminated_Volunteers ) |
-
-### Infected to Uninfected Ratio - Kian
-
