@@ -464,15 +464,14 @@ Notice that with a very low hand hygiene level, an outbreak occurs far more ofte
 ## THINGS TO TRY
 
 
-Try changing the handwash rate.
-See what the effect of increasing the cleaning regimen is on the spread.
 
 ## EXTENDING THE MODEL
 
 (suggested things to add or change in the Code tab to make the model more complicated, detailed, accurate, etc.)
 
 ## NETLOGO FEATURES
-Proximity of turtles to each other influences the simulation
+
+(interesting or unusual features of NetLogo that the model uses, particularly in the Code tab; or where workarounds were needed for missing features)
 
 ## RELATED MODELS
 
