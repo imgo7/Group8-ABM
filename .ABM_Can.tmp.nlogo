@@ -428,50 +428,80 @@ Yellow -- Patients\nBlue -- HCWs\nGreen -- Volunteers\nWith Red Circle -- Infect
 @#$#@#$#@
 ## WHAT IS IT?
 
-The agent-based model shows the spread of infection in a hospital ward.
+This model simulates the spread of the virus in the hospital through a small isolated population.
+
+Users can change different characters' hand hygiene levels and should see the distinct disparity of infected number between HCWs who have high hand hygiene level and low hand hygiene level.
+
+There has a realtime linear chart to show the number of sick people in each character and total population.
+
+There are three characters patient, healthcare worker and volunteers. Each of them can transmit the virus to others with specific probability based on characters.
+The probability of transmission is most related to hand hygiene level and patients have a small chance to recover.
+
+All the mathematic models and formulas are from reference paper one section 3.2 and the Python source code from reference paper two which is on the below.
 
 
 
 ## HOW IT WORKS
 
-(The simulation is based on the mathematical model presented on the about page of the website. The parameters entered by the user are passed on to the model and then the result is presented to the user. )
+Abbreviation 	Description
 
-The approximate reproduction number of a patient among HCWs is calculated, to demonstrate the spread of infection within the hospital ward. To begin with the sample code was run to calculate an estimated R0. When run, the output delivers the approximate R0 of a Patient amongst Healthcare Workers (HCWs). The output was recorded five times,was added and then divided by five to provide an approximate R0. This R0 occurs when the handwashing rate (hand-hygiene-level slider in Netlogo) is set to 24.0.
-In order to calculate the R0 so that it would change once the hand hygiene level is applied. The hand hygiene level was measured on a scale of 12 to 52. The approximate reproduction number, approx_r0.In order to calculate the approximate reproduction number , taking into account the hand hygiene level, the formula is: 16.7316 – (step)(0.41829).
-The cleaning regimen variable’s foundations are concluded from the paper, Dancer, S.J., White, L.F., Lamb, J. et al. Measuring the effect of enhanced cleaning in a UK hospital: a prospective cross-over study. BMC Med 7, 28 (2009). https://doi.org/10.1186/1741-7015-7-28. The paper states that an improved cleaning regimen results in a 32.5% decrease in levels of contamination. In this model I applied this to mean 32.5% less infected agents as a result of an increased cleaning regimen.
-For additional information about the mathematical formulas behind the main model, consult our GitHub Repository, and read MathematicalFormulas.md for a detailed explanation behind the formulas applied in the main model.
+betaPH 	        Patient-HCW transmission rate
+
+betaPV 	        Patient-Volunteer transmission rate
+
+eta 	        HCW hand hygiene rate
+
+xi 	        Volunteer hand hygiene rate
+
+
+
+Colonization Type 	Calculate Fumular
+
+patient by HCW 	        ( 1 - eta ) / total_patients * betaPH * contaminated_HCWs * (                              total_patients - colonized_patients)
+
+patient by Volunteer 	( 1 - xi ) /total_patients * betaPV * contaminated_Volunteers * (                          total_patients - colonized_patients )
+
+HCW by Patient 	        ( 1 - eta ) / total_patients * betaPH * colonized_patients * (
+                         total_HCWs - contaminated_HCWs )
+
+Volunteer by Patient 	( 1 - xi ) / total_patients * betaPV * colonized_patients * (                              total_volunteers - contaminated_Volunteers )
+
 
 ## HOW TO USE IT
 
-(The hand hygiene slider on the page allows the user to set what percentage of healthcare workers follow the hand hygiene regimen they're required to follow.
 
-The cleaning regimen slider allows the user to control the quality of the hand cleaning regimen that is in place within the hospital, where 100% means that it kills all bacteria on the hands, and 0% means that it kills none of the bacteria.
+The hand hygiene slider allows the user to control the quality of the hand cleaning regimen that is in place within the hospital, where 100% means that it kills all virous on the hands, and 0% means that it kills none of the virous.
 
 The model speed slider allows the user to speed up or slow down how often the simulation changes states.
 
-Once the user has set the variables, they click on setup to generate the starting state of the simulation.)
+Once the user has set the variables, they click on setup to generate the starting state of the simulation and click go to start simulation.
 
 
-To use to model: 1. Click the setup button and all the people will be set up, with the white agents marked as uninfected and red agents as infected (as according to the legend). 2. Click on the go button to run the model. 3. Increase or decrease the level of hand hygiene present in the hospital ward by augmenting the slider named “hand-hygiene-level”. 4. Switch on the switch called “increased-cleaning-regimen’ to view what an amelioration of the level of cleaning present in the hospital ward does to the spread of infection. 5. The graph displays how the reproduction number is impacted by the hand hygiene level and cleaning regimen. The reproduction number is also displayed underneath the graph so the user is able to view the approximate reproduction number produced as a result.
+To use to model: 
+0. Settle the number of patients, HCWs and volunteers.
+1. Click the setup button and all the people will be set up
+2. Click on the go button to run the model. 
+3. Increase or decrease the level of hand hygiene present for HCWs and volunteers in the hospital ward  
+5. The graph displays the number of sick people in each character and total population.
 
 ## THINGS TO NOTICE
 
 Notice how the handwash rate affects the spread of the infection in a simple simulation of a hospital.
-Notice that the exact rate of spread caused by the patients to HCWs is shown below the graph.
-Notice that if you change the hand hygiene level, the agents become uninfected and another simulation begins of a hospital being infected.
-Notice that with a very low hand hygiene level, an outbreak occurs far more often.
+
+The hand hygiene slider allows the user to control the quality of the hand cleaning regimen that is in place within the hospital, where 100% means that it kills all virous on the hands, and 0% means that it kills none of the virous.low hand hygiene level, an outbreak occurs far more often.
 
 ## THINGS TO TRY
 
 
+Try changing the handwash rate.
+See what the effect of increasing the cleaning regimen is on the spread.
 
 ## EXTENDING THE MODEL
 
-(suggested things to add or change in the Code tab to make the model more complicated, detailed, accurate, etc.)
+
 
 ## NETLOGO FEATURES
-
-(interesting or unusual features of NetLogo that the model uses, particularly in the Code tab; or where workarounds were needed for missing features)
+Proximity of turtles to each other influences the simulation
 
 ## RELATED MODELS
 
@@ -479,9 +509,9 @@ Notice that with a very low hand hygiene level, an outbreak occurs far more ofte
 
 ## CREDITS AND REFERENCES
 
-Martín López-García andTheodore Kypraios.2018 A unified stochastic modelling framework for the spread of nosocomial infectionsJ. R. Soc. Interface.1520180060. http://doi.org/10.1098/rsif.2018.0060
-Wang J, Wang L, Magal P, Wang Y, Zhuo J, Lu X, Ruan S. 2011Modelling the transmission dynamics of meticillin-resistant Staphylococcus aureus in Beijing Tongren hospital. J. Hosp. Infect. 79, 302–308. (doi:10.1016/j.jhin.2011.08.019) Crossref, PubMed, Google Scholar
-Dancer, S.J., White, L.F., Lamb, J. et al. Measuring the effect of enhanced cleaning in a UK hospital: a prospective cross-over study. BMC Med 7, 28 (2009). https://doi.org/10.1186/1741-7015-7-28
+1. Martín López-García andTheodore Kypraios.2018 A unified stochastic modelling framework for the spread of nosocomial infectionsJ. R. Soc. Interface.1520180060. http://doi.org/10.1098/rsif.2018.0060
+2. Wang J, Wang L, Magal P, Wang Y, Zhuo J, Lu X, Ruan S. 2011Modelling the transmission dynamics of meticillin-resistant Staphylococcus aureus in Beijing Tongren hospital. J. Hosp. Infect. 79, 302–308. (doi:10.1016/j.jhin.2011.08.019) Crossref, PubMed, Google Scholar
+3. Dancer, S.J., White, L.F., Lamb, J. et al. Measuring the effect of enhanced cleaning in a UK hospital: a prospective cross-over study. BMC Med 7, 28 (2009). https://doi.org/10.1186/1741-7015-7-28
 @#$#@#$#@
 default
 true
