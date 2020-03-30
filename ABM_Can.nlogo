@@ -492,7 +492,6 @@ The hand hygiene slider allows the user to control the quality of the hand clean
 
 ## THINGS TO TRY
 
-
 Try changing the handwash rate.
 See what the effect of increasing the cleaning regimen is on the spread.
 
