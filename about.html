@@ -14,22 +14,10 @@
     <script src="bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-   <style>
-        .fakeimg {
-            height: 200px;
-            background: #aaa;
-        }
-
-        .fakeimg_abm {
-            height: 800px;
-            background: #aaa;
-        }
-    </style>
 </head>
 <body>
 
     <div class="jumbotron p-3 mb-2 bg-info text-white text-center" style="margin-bottom:0">
-        <img src="logo.png">
         <h1>SureWash ABM</h1>
         <p style="color: white;">An interactive website where users can change parameters to the study, and from that, simulate the spread of a nosocomial disease throughout a hospital.</p>
         <button type="button" id="sidebarCollapse" class="btn btn-info">
@@ -77,11 +65,12 @@
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
-            <div class="sidebar-header">
+            <div class="sidebar-header" style="text-align:center">
+                <img src="logo.png" style="float:center;width:160px;height:150px;" style="align-items: center;">
                 <h3>Modelling Infection Outbreak</h3>
             </div>
             
-            <ul class="list-unstyled components">
+            <ul class="list-unstyled components" style="text-align:center">
                 
                 <li>
                     <a href="project.html">Home</a>
