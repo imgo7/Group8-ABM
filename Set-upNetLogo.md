@@ -9,4 +9,4 @@ After checking the requirements, in order to install NetLogo you provide your na
 
 
 ## NetLogo Web - Kian 
-No particular set-up is required for NetLogo Web. All that is required is modern web-browser. Up until now, the list of tested browsers consists of Edge and Chrome. 
+No particular set-up is required for NetLogo Web. All that is required is modern web-browser. Up until now, the list of tested browsers consists of Edge and Chrome. Internet explorer is not recommended.
