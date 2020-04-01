@@ -14,6 +14,7 @@
     <script src="bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@4.6.0/dist/echarts.min.js" ></script>
    <style>
         .fakeimg {
             height: 200px;
@@ -58,11 +59,40 @@
 <p style="display: block; color: black; width: 900px;   margin-left: auto; margin-right: auto;"> The graph below shows the results provided
   by the APIC Calculator on a sample admission size of 5000 patients per year. The results are calculated using average figures based on medical literature but the user is free to enter their own paramerers for their hospital perhaps
    to have a closer determination of the number of infections, the added cost and extra days used in the hospital due to nosocomial infections.</p>
- <img src="graph.png" style="   height: 500px;  width: 900px; display: block;;   margin-left: auto;
-  margin-right: auto;  " >
+ 
  <div>
+<p style="display: block; color: black; width: 900px;   margin-left: auto; margin-right: auto;"> APIC Calculator Result Based On Hospital With Different Admission Size:</p>
+ <div id="main" style="width: 1100px;height:600px; display: block; margin-left: auto; margin-right: auto;"></div>
+ <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('main'));
 
+        var option = {
+            tooltip: {},
+            legend: {
+                data: ["5000","10000","15000"]
+            },
+            xAxis: {
+                data:["Total Infections Number", "Total Excess Costs (Thousand Dollars)", "Total Excess Hospital Days"]
+            },
+            yAxis: {},
+            series: [{
+                name: '5000',
+                type: 'bar',
+                data: [645,4780.562,344]
+            }, {
+                name: '10000',
+                type: 'bar',
+                data: [1291,9561.124,6892]
+            }, {
+                name: '15000',
+                type: 'bar',
+                data: [1963, 14341.678,10337]
+            }]
+        };
+        myChart.setOption(option);
+    </script>
  </div>
+
  <div class="container" style="margin-top: 30px;">
   <text>Click <a href="https://apic.org/Resource_/TinyMceFileManager/Resources/APICCostCalculator-Lit01272012.xls" style="text-underline-position: below;color: blue">here</a> to download the APIC cost calculator, complete with instructions.<br></text>
  </div>
