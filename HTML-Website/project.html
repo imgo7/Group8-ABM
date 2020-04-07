@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SureWash ABM</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylebar.css">
+    <link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div class="jumbotron p-3 mb-2 bg-info text-white text-center" style="margin-bottom:0">
+        <h1>SureWash ABM</h1>
+        <p style="color: white;">An interactive website where users can change parameters to the study, and from that, simulate the spread of a nosocomial disease throughout a hospital.</p>
+        <button type="button" id="sidebarCollapse" class="btn btn-info">
+            <i class="fas fa-align-left"></i>
+            <span>Toggle Sidebar</span>
+        </button>
+    </div>
+    <style>
+        .jumbotron img {
+            height: 30px;
+            width: auto;
+            display: table-cell;
+            vertical-align: left;
+        }
+    </style>
+    
+
+    <div class="text-xl-center">
+      <a style="font-size: xx-large;">Welcome to SureWash Agent Based Model<br></a>
+      <b style="font-size: medium;">This website was created by Group 8 of Trinity College Dublin's Software Engineering Project module class of 2020<br></b>
+      <c>This website contains interactive models that users can use to see how diseases spread throughout hospital<br></c>
+      <d>More information about the project can be found by using the navigation bar.<br><br></d>
+    <div>
+    
+    <div class="conatiner" style="margin-top:30px; margin-bottom: 20px;">
+      <text style="font-size: medium;">Find out more about the work that SureWash do by checking out their website.</text>
+      <li class="nav-item">
+        <a class="nav-link" href="https://surewash.com">surewash.com</a>
+      </li>
+    </div>  
+    
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <img src="logo.png" style="float:center;width:160px;height:150px;" style="align-items: center;">
+                <h3>Modelling Infection Outbreak</h3>
+            </div>
+            
+            <ul class="list-unstyled components">
+                
+                <li>
+                    <a href="project.html">Home</a>
+                </li>
+                <li>
+                    <a href="about.html">About</a>
+                </li>
+                <li>
+                    <a href="ABM.html">Base Model</a>
+                </li>
+                <li>
+                    <a href="ABM_Can.html">Complex Model</a>
+                </li>
+                <li>
+                    <a href="APIC.html">APIC Cost Calculator</a>
+                </li>
+                <li>
+                    <a href="https://netlogoweb.org/launch#Load"> Upload Model</a>
+                </li>
+
+            </ul>
+            <ul class="list-unstyled CTAs">
+                <li>
+                    <a href="https://royalsocietypublishing.org/doi/full/10.1098/rsif.2018.0060#d3e1812" class="article">Link to Paper</a>
+                </li>
+            </ul>
+        </nav>
+        
+
+    </div>
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
+</body>
+</html>
