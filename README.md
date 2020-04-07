@@ -15,7 +15,24 @@ The project contains a number of components that collectively work to achieve th
 
 project.html with sidebar (contains toggle function)
 
-![Image of homepage](https://github.com/imgo7/Group8-ABM/tree/web-and-ABM/image/project.jpg)
+![Image of homepage](https://github.com/imgo7/Group8-ABM/blob/web-and-ABM/image/project.jpg)
+
+ABM.html - main agent-based model (base model)
+
+![Image of main agent-based model](https://github.com/imgo7/Group8-ABM/blob/web-and-ABM/image/ABM.jpg)
+
+ABM_Can.html - complex model
+
+![Image of complex agent-based model](https://github.com/imgo7/Group8-ABM/blob/web-and-ABM/image/ABM_Can.jpg)
+
+about.html - information for the user regarding the project 
+
+![Image of about.html](https://github.com/imgo7/Group8-ABM/blob/web-and-ABM/image/about.jpg)
+
+APIC.html - additional feature to showcase the APIC Cost Calculator
+![Image of APIC.html](https://github.com/imgo7/Group8-ABM/blob/web-and-ABM/image/APIC.jpg)
+
+
 
 
 
