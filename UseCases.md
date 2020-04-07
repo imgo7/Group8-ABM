@@ -11,6 +11,18 @@ Error scenario       | <ul><li>If clicking the button generates no response a ti
 
 
 
+Use case name        | Edit variables
+------------         | -------------
+Participating actors | Website visitor
+Entry conditions     | <ul><li>The model must be loaded into the browser</li><li>The browser must be compatible with NetLogo Web</li>
+Exit conditions      | The new variables must be valid and accepted by the code for the model
+Flow of events       | <ol><li>The user edits one or more of the variables</li><li>The user generates a new iteration of the model using these variables (does not reauire any additional download)
+Error scenario       | If the variable(s) are not accepted by the model, an error message is thrown
+  
+**Use case summary** - This use case illustrates the simple action of changing a variable in the ABM, and demonstrates the ease in which this should be acomplished
+
+
+
 Use case name        | Upload custom model
 ------------         | -------------
 Participating actors | Developer
