@@ -20,7 +20,7 @@ contamination. In this model I applied this to mean 32.5% less infected agents a
 
 
 
-### Mathematical Formulas &&  Usage of probability - Can
+### **Mathematical Formulas &&  Usage of probability - Can**
 | Abbreviation | Description |
 | :---: | :---: | 
 | betaPH | Patient-HCW transmission rate |
