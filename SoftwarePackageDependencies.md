@@ -10,3 +10,5 @@ The creation of the sidebar was aided by the use of a JavaScript library that al
 NetLogo is a multi-agent programmable modeling environment. The backend code (the file ending with .netlogo) is relied on Netlogo environment. Please download NetLogo and import .netlogo files to NetLogo if you need to run backend code.
 ### NetLogo Web
 NetLogo Web is an online version of NetLogo where allows you can run .netlogo files on the browsers. Our model in NetLogo are automatically converted to HTML files by NetLogo web.
+### Echart
+ECharts is a powerful, interactive charting and visualization library for browser. Echart library is used to build the interactive chart in APIC.html which make users have more interactions with the webpage.
