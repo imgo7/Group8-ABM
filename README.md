@@ -13,7 +13,7 @@ The project contains a number of components that collectively work to achieve th
 
 ## [Online Version](https://group8abm.github.io/)
 **View our project online !  
-Websit Link: https://group8abm.github.io/**
+Website Link: https://group8abm.github.io/**
 
 ## Images of the website (including the agent-based models)
 
